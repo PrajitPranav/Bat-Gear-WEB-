@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discover More - Bat Gear</title>
+
+  <!-- Raleway Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color:#fff;
+      color: white;
+      font-family: 'Raleway', sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ========================= NAVBAR ========================== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 60px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .menu-icon {
+      position: absolute;
+      left: 20px;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .logo {
+      font-weight: 100;
+      font-size: 1.5rem;
+      letter-spacing: 0.6rem;
+      color: white;
+      text-align: center;
+    }
+
+    /* ========================= SIDE PANEL ========================== */
+    .side-panel {
+      height: 100%;
+      width: 250px;
+      position: fixed;
+      top: 0;
+      left: -250px;
+      z-index: 1100;
+      padding-top: 60px;
+      transition: 0.3s ease;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      font-family: 'Raleway', sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .side-panel a {
+      padding: 16px 24px;
+      text-decoration: none;
+      color: white;
+      font-size: 1rem;
+      letter-spacing: 0.3rem;
+      font-weight: 100;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+
+    .side-panel a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .side-panel .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* ========================= GRID LAYOUT ========================== */
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 120px auto 50px auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 80px 20px;
+      padding: 20px;
+    }
+
+    .car-box {
+      text-align: center;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .car-name {
+      font-size: 1.4rem;
+      letter-spacing: 0.3rem;
+      margin-bottom: 20px;
+      font-weight: 200;
+    }
+
+    .car-img {
+      width: 90%;
+      height: 210px;
+      object-fit: contain;
+      margin-bottom: 25px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
+
+    /* ========================= BOOK BUTTON ========================== */
+    .book-btn {
+      width: 260px;
+      height: 55px;
+      border: 1px solid rgb(4, 1, 1);
+      background: transparent;
+      color: rgb(10, 9, 9);
+      font-size: 0.9rem;
+      letter-spacing: 0.2rem;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s ease;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    /* Checkerboard racing flag pattern */
+    .book-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(45deg, #000 25%, #fff 25%, #fff 50%, #000 50%, #000 75%, #fff 75%);
+      background-size: 40px 40px;
+      opacity: 0.35;
+      transition: left 0.5s ease-out;
+    }
+
+    .book-btn:hover::before {
+      left: 0;
+    }
+
+    .book-btn:hover {
+      background: white;
+      color: black;
+      border-color: rgb(9, 9, 9);
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(255,255,255,0.25);
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ========================= SIDE PANEL ========================== -->
+  <div id="sidePanel" class="side-panel">
+    <button class="close-btn" onclick="closePanel()">×</button>
+    <a href="home.html">Home</a>
+    <a href="Dashboard.html">Dashboard</a>
+    <a href="events.html">Events</a>
+    <a href="Subsciption.html">Membership</a>
+    <a href="Garage.html">Garage</a>
+    <a href="contactus.html">Contact Us</a>
+  </div>
+
+  <!-- ========================= NAVBAR ========================== -->
+  <nav class="navbar">
+    <div class="menu-icon" onclick="openPanel()">☰</div>
+    <h1 class="logo">B A T &nbsp; G E A R</h1>
+  </nav>
+
+  <!-- ========================= MAIN GRID ========================== -->
+  <div class="container">
+
+    <div class="car-box">
+      <div class="car-name">GT2 STRADALE</div>
+      <img src="https://maserati.scene7.com/is/image/maserati/maserati/international/Models/default/families/G2.jpg?$800x2000$&fit=constrain" class="car-img">
+      <button class="book-btn">Book for a Cruise</button>
+    </div>
+
+    <div class="car-box">
+      <div class="car-name">BMW GT</div>
+      <img src="https://imgd-ct.aeplcdn.com/664x415/n/gdclc4a_1515123.jpg?q=80" class="car-img">
+      <button class="book-btn">Book for a Cruise</button>
+    </div>
+
+    <div class="car-box">
+      <div class="car-name">Mercedes-AMG SL 63</div>
+      <img src="https://www.hdcarwallpapers.com/download/mansory_mercedes_amg_sl_63_4matic__soft_kit_2023_4k-1920x1080.jpg" class="car-img">
+      <button class="book-btn">Book for a Cruise</button>
+    </div>
+
+    <div class="car-box">
+      <div class="car-name">BMW 3 Series Sedan M</div>
+      <img src="https://www.bmw.cc/content/dam/bmw/common/all-models/m-series/m3-sedan/2022/highlights/bmw-3-series-sedan-m-automobiles-gallery-impressions-m3-competition-02-mobile.jpg" class="car-img">
+      <button class="book-btn">Book for a Cruise</button>
+    </div>
+
+    <div class="car-box">
+      <div class="car-name">Mustang GT</div>
+      <img src="https://i.pinimg.com/736x/a1/0e/19/a10e19c0354de63803091dedd6dba0ca.jpg" class="car-img">
+      <button class="book-btn">Book for a Cruise</button>
+    </div>
+
+    <div class="car-box">
+      <div class="car-name">Porsche GT3RS</div>
+      <img src="https://e0.pxfuel.com/wallpapers/494/597/desktop-wallpaper-the-porsche-911-gt3-rs-configurator-is-online-and-boy-does-it-have.jpg" class="car-img">
+      <button class="book-btn">Book for a Cruise</button>
+    </div>
+
+  </div>
+
+  <script>
+    function openPanel() {
+      document.getElementById("sidePanel").style.left = "0";
+    }
+
+    function closePanel() {
+      document.getElementById("sidePanel").style.left = "-250px";
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to BAT GEARS Car Club</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .content-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        .get-started {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #fff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .get-started:hover {
+            text-decoration: underline;
+        }
+
+        .get-started .arrow {
+            margin-left: 8px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop class="video-background">
+        <source src="template/McLaren P1 on Backroads _ 4k(4K_HD).webm" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="content-container">
+        <b><h1><b>Welcome to BAT GEARS Car Club</h1>
+        <p>Welcome to the BAT GEARS Car Club, where passion meets the road!
+            Here, every engine rev and tire spin fuels our shared love for automobiles.
+            Join a community that celebrates innovation, speed, and timeless design.
+            Let’s drive together into a world of endless possibilities and adventure!</p>
+        <a href="Login.html" class="get-started">Get Started <span class="arrow">&rarr;</span></a></b>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

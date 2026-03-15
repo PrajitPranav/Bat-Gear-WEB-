@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bat Gear - Membership</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: 'Raleway', sans-serif;
+      background-color: black;
+      background-image: url(/template/unnamed.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-weight: 100;
+      font-size: 1.5rem;
+      letter-spacing: 0.6rem;
+      color: white;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .menu-icon {
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: white;
+    }
+
+    /* Membership Section */
+    .membership-section {
+      padding: 120px 5% 80px;
+      text-align: center;
+    }
+
+    .membership-title {
+  font-size: 2.5rem;
+  font-weight: 100; /* Same thin weight as navbar text */
+  letter-spacing: 0.3rem;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  font-family: 'Raleway', sans-serif;
+  color: black; /* Make it black */
+  
+}
+
+
+    /* Membership Cards Layout */
+    .membership-cards {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      color: white;
+      border-radius: 15px;
+      width: 260px;
+      min-height: 420px;
+      padding: 25px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 0.7s ease forwards;
+      border: none;
+    }
+
+    /* Middle Card Highlight */
+    .card:nth-child(2) {
+      transform: scale(1.08);
+      width: 300px;
+      height: 500px;
+      animation-delay: 0.2s;
+    }
+
+    /* Content inside cards */
+    .card h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .card p {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.4;
+      flex-grow: 1;
+      margin-bottom: 20px;
+    }
+
+    /* Price at bottom */
+    .price {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    /* Buy Membership Button */
+    .buy-btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 6px;
+      background: transparent;
+      color: white;
+      font-weight: bold;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    /* Smooth Outline Animation */
+    .buy-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 2px solid white;
+      border-radius: 6px;
+      transform: scaleX(0);
+      transform-origin: left;
+      opacity: 0;
+      transition: transform 0.5s ease, opacity 0.3s ease;
+    }
+
+    .buy-btn:hover::before {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+
+    .buy-btn:hover {
+      transform: scale(1.03);
+      color: white;
+    }
+
+    /* Card hover */
+    .card:hover {
+      transform: scale(1.04);
+      box-shadow: 0px 8px 25px rgba(255, 255, 255, 0.15);
+    }
+
+    /* Fade-in Animation */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .membership-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .card, .card:nth-child(2) {
+        width: 90%;
+        transform: none;
+        height: auto;
+      }
+    }
+
+    /* Side Panel */
+    .side-panel {
+      height: 100%;
+      width: 250px;
+      position: fixed;
+      top: 0;
+      left: -250px;
+      z-index: 1100;
+      padding-top: 60px;
+      transition: 0.3s ease;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      font-family: 'Raleway', sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .side-panel a {
+      padding: 16px 24px;
+      text-decoration: none;
+      color: white;
+      font-size: 1rem;
+      letter-spacing: 0.3rem;
+      font-weight: 100;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+
+    .side-panel a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .side-panel .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="menu-icon" onclick="openPanel()">☰</div>
+    <div class="logo">B A T &nbsp; G E A R</div>
+  </nav>
+
+  <!-- Side Panel Menu -->
+  <div id="sidePanel" class="side-panel">
+    <button class="close-btn" onclick="closePanel()">×</button>
+    <a href="home.html">Home</a>
+    <a href="Dashboard.html">Dashboard</a>
+    <a href="events.html">Events</a>
+    <a href="Subsciption.html">Membership</a>
+    <a href="Garage.html">Garage</a>
+    <a href="contactus.html">Contact Us</a>
+  </div>
+
+  <!-- Membership Section -->
+  <section class="membership-section">
+    <h1 class="membership-title"><b>Choose Your Membership</b></h1>
+
+    <div class="membership-cards">
+      <div class="card">
+        <h2>Go-Karting Pass</h2>
+        <p>Unlimited access to Bat Gear Go-Karting Arena for 1 month.</p>
+        <div>
+          <p class="price">₹1,999</p>
+          <a href="membership-checkout.html?plan=go-karting" class="buy-btn">Buy Membership</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Track Rider</h2>
+        <p>Track riding experience every weekend + exclusive workshops.</p>
+        <div>
+          <p class="price">₹4,999 / 3 Months</p>
+          <a href="membership-checkout.html?plan=track-rider" class="buy-btn">Buy Membership</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>All-in-One</h2>
+        <p>1 Year or 2 Year Membership with full access to all events & rides.</p>
+        <div>
+          <p class="price">₹14,999 / Yr | ₹24,999 / 2Yrs</p>
+          <a href="membership-checkout.html?plan=all-in-one" class="buy-btn">Buy Membership</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function openPanel() {
+      document.getElementById('sidePanel').style.left = '0';
+    }
+
+    function closePanel() {
+      document.getElementById('sidePanel').style.left = '-250px';
+    }
+  </script>
+
+</body>
+</html>

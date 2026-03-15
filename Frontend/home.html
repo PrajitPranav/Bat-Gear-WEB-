@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bat Gear | Car Enthusiasts Club</title>
+  <link rel="stylesheet" href="Home.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Side Panel Menu -->
+<div id="sidePanel" class="side-panel">
+  <button class="close-btn" onclick="closePanel()">×</button>
+    <a href="Dashboard.html">Dashboard</a>
+  <a href="events.html">Events</a>
+  <a href="Subsciption.html">Membership</a>
+  <a href="Garage.html">Garage</a>
+  <a href="contactus.html">Contact Us</a>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="menu-icon" onclick="openPanel()">☰</div>
+  <h1 class="logo">B A T &nbsp; G E A R</h1>
+</nav>
+
+<!-- Carousel -->
+<div class="carousel">
+  <div class="slides" id="slides">
+    <div class="slide" style="background-image: url('template/garage2.png');">
+      <div class="caption">
+        <p>POWER. DRIVEN.</p>
+        <h2>BAT GEAR</h2>
+        <div class="btn-group">
+          <button class="btn-explore" onclick="window.location.href='Subsciption.html'">Explore</button>
+        </div>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('template/TRACK.png');">
+      <div class="caption">
+        <p>CLASSICS UNITE</p>
+        <h2>Track Days</h2>
+        <div class="btn-group">
+          <button class="btn-explore">View Events</button>
+          <button class="btn-configure">Details</button>
+        </div>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('template/pushbuttonjoin.png');">
+      <div class="caption">
+        <p>EXPERIENCE THE RUSH</p>
+        <h2>Membership</h2>
+        <div class="btn-group">
+          <button class="btn-explore" onclick="window.location.href='Subsciption.html'">Explore</button>
+          <button class="btn-configure">Benefits</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="nav-btn" id="prev">&#8592;</button>
+  <button class="nav-btn" id="next">&#8594;</button>
+</div>
+
+<!-- Stories Section -->
+<section class="stories">
+  <div class="stories-header">
+    <h2>STORIES</h2>
+    <a href="#" class="read-all">Read all stories</a>
+  </div>
+  <div class="story-cards">
+    <div class="story-card">
+      <img src="template/trackday.png" alt="Story 1" />
+      <div class="story-card-content">
+        <p class="category">Track Day</p>
+        <h3>Unleash your vehicle's full potential on iconic circuits.</h3>
+        <p class="date">26 April 2025</p>
+      </div>
+    </div>
+    <div class="story-card">
+      <img src="template/go-kart.png" alt="Story 2" />
+      <div class="story-card-content">
+        <p class="category">GO-Kart Training</p>
+        <h3>Refine your driving skills with professional go-kart coaching.</h3>
+        <p class="date">15 February 2025</p>
+      </div>
+    </div>
+    <div class="story-card">
+      <img src="template/winners.png" alt="Story 3" />
+      <div class="story-card-content">
+        <p class="category">Championships</p>
+        <h3>Celebrate the champions and relive the glory of the season.</h3>
+        <p class="date">02 January 2025</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="discover">
+  <div class="stories-headerB">
+    <h2><b>Discover</b></h2>
+  </div>
+  <div class="discover-cards">
+    <div class="discover-card" style="background-image: url('template/TRACKBW.png');">
+      <div class="card-overlay">
+        <div class="card-text">
+          <h3>Bat Meets —<br><span class="subtext">Explore upcoming track days, car meets, and exclusive Bat Gear Events.</span></h3>
+          <span class="arrow">→</span>
+        </div>
+      </div>
+    </div>
+    <div class="discover-card" style="background-image: url('template/spotlight.png');">
+      <div class="card-overlay">
+        <div class="card-text">
+          <h3>Bat Club Spotlight —<br><span class="subtext">Submit your car to be featured in our weekly spotlight series.</span></h3>
+          <span class="arrow">→</span>
+        </div>
+      </div>
+    </div>
+    <div class="discover-card" style="background-image: url('template/Perfomance.png');">
+      <div class="card-overlay">
+        <div class="card-text">
+          <h3>Performance Mods —<br><span class="subtext">Discover popular upgrades, exhaust kits, turbo setups, and tuning gear.</span></h3>
+          <span class="arrow">→</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Bat Gear. All Rights Reserved.</p>
+  <p><a href="#">Membership</a> | <a href="#">Contact Us</a> | <a href="#">Profile</a></p>
+</footer>
+
+<!-- Script -->
+<script>
+  // Carousel
+  const slides = document.getElementById('slides');
+  const totalSlides = slides.children.length;
+  let index = 0;
+
+  function showSlide(i) {
+    slides.style.transform = `translateX(-${i * 100}%)`;
+  }
+
+  document.getElementById('next').addEventListener('click', () => {
+    index = (index + 1) % totalSlides;
+    showSlide(index);
+  });
+
+  document.getElementById('prev').addEventListener('click', () => {
+    index = (index - 1 + totalSlides) % totalSlides;
+    showSlide(index);
+  });
+
+  setInterval(() => {
+    index = (index + 1) % totalSlides;
+    showSlide(index);
+  }, 5000);
+
+  // Side Panel Menu
+  function openPanel() {
+    document.getElementById('sidePanel').style.left = '0';
+  }
+
+  function closePanel() {
+    document.getElementById('sidePanel').style.left = '-250px';
+  }
+
+  // Zoom + Fullscreen carousel effect
+  const centerImage = document.getElementById('centerImage');
+  const zoomContainer = document.getElementById('zoomCarousel');
+  const zoomSlides = zoomContainer.querySelectorAll('.zoom-slide');
+  let active = false;
+  let currentIndex = 1; // starts at center image
+  let lastScroll = 0;
+
+  function updateZoomCarousel() {
+    zoomSlides.forEach((img, idx) => {
+      img.classList.remove('active');
+      if (idx === currentIndex) {
+        img.classList.add('active');
+        centerImage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+
+    zoomContainer.classList.add('zoom-active');
+    active = true;
+  }
+
+  function resetZoomCarousel() {
+    zoomSlides.forEach(img => img.classList.remove('active'));
+    zoomContainer.classList.remove('zoom-active');
+    active = false;
+  }
+
+  window.addEventListener('scroll', (e) => {
+    const rect = centerImage.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
+
+    if (inView && !active) {
+      updateZoomCarousel();
+    } else if (!inView && active) {
+      resetZoomCarousel();
+    }
+  });
+
+  // Scroll wheel navigation in zoom mode
+  zoomContainer.addEventListener('wheel', (e) => {
+    if (!active) return;
+
+    e.preventDefault();
+    if (e.deltaY > 0) {
+      // Scroll down
+      currentIndex = (currentIndex + 1) % zoomSlides.length;
+    } else {
+      // Scroll up
+      currentIndex = (currentIndex - 1 + zoomSlides.length) % zoomSlides.length;
+    }
+
+    updateZoomCarousel();
+  }, { passive: false });
+</script>
+
+</body>
+</html>

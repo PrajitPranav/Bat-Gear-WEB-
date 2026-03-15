@@ -1,0 +1,379 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.menu-icon {
+  position: absolute;
+  left: 20px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+.logo {
+  font-weight: 100;
+  font-size: 1.5rem;
+  letter-spacing: 0.6rem;
+  color: white;
+  text-align: center;
+}
+
+/* Side Panel */
+.side-panel {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  z-index: 1100;
+  padding-top: 60px;
+  transition: 0.3s ease;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  font-family: 'Raleway', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-panel a {
+  padding: 16px 24px;
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  letter-spacing: 0.3rem;
+  font-weight: 100;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+
+.side-panel a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.side-panel .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Carousel */
+.carousel {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  top: 0;
+  margin-top: 0;
+  z-index: 1;
+}
+
+.slides {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.caption {
+  position: absolute;
+  bottom: 100px;
+  left: 50px;
+  color: white;
+}
+
+.caption p {
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
+.caption h2 {
+  font-size: 2.8rem;
+  margin: 10px 0;
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-explore,
+.btn-configure {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.btn-explore {
+  background-color: white;
+  color: black;
+}
+
+.btn-configure {
+  background-color: #2a2a2a;
+  color: white;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  z-index: 2;
+}
+
+#prev {
+  left: 10px;
+}
+
+#next {
+  right: 10px;
+}
+
+/* Stories Section */
+.stories {
+  padding: 80px 40px;
+  background-color: black;
+}
+
+.stories-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.stories-header h2 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 100;
+  letter-spacing: 0.8rem;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.stories-headerB h2 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 100;
+  letter-spacing: 0.8rem;
+  color:black;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.read-all {
+  background-color: white;
+  color: black;
+  padding: 10px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.story-cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+.story-card {
+  background-color: #1c1c1c;
+  border-radius: 10px;
+  overflow: hidden;
+  flex: 1 1 32%;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  transition: none;
+}
+
+.story-card img {
+  width: 100%;
+  height: auto;
+  transition: transform 1s ease;
+  will-change: transform;
+}
+
+.story-card:hover img {
+  transform: scale(1.05);
+}
+
+
+.story-card-content {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.category {
+  font-size: 0.85rem;
+  color: #4db6ac;
+}
+
+.story-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.date {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  background-color: #111;
+}
+
+footer a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+
+
+/* Discover Section */
+.discover {
+  background-color: white;
+  padding: 60px 40px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.discover-heading {
+  width: 100%;
+  text-align: left;
+  font-family: 'Raleway', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 100;
+  letter-spacing: 0.8rem;
+  color: black;
+  margin-bottom: 40px;
+}
+
+.discover-heading h2 {
+  margin-left: 10px;
+}
+
+.discover-cards {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.discover-card {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.discover-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100%;
+}
+
+.card-text h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 400;
+}
+
+.card-text .subtext {
+  font-size: 0.95rem;
+  font-weight: 300;
+}
+
+.card-text .arrow {
+  font-size: 1.5rem;
+  margin-top: 8px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .discover-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .discover-card {
+    width: 90%;
+    max-width: 350px;
+  }
+
+  .discover-heading {
+    text-align: center;
+    margin-left: 0;
+  }
+}

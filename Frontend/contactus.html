@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Bat Gear</title>
+
+  <!-- Raleway Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    body {
+      background: #fff;
+      color: #000;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR ------------------------------------------------------ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 60px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .menu-icon {
+      position: absolute;
+      left: 20px;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .logo {
+      font-weight: 100;
+      font-size: 1.5rem;
+      letter-spacing: 0.6rem;
+      color: white;
+    }
+
+    /* SIDE PANEL --------------------------------------------------- */
+    .side-panel {
+      height: 100%;
+      width: 250px;
+      position: fixed;
+      top: 0;
+      left: -250px;
+      z-index: 3000;
+      padding-top: 60px;
+      transition: 0.3s ease;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .side-panel a {
+      padding: 16px 24px;
+      text-decoration: none;
+      color: white;
+      font-size: 1rem;
+      letter-spacing: 0.3rem;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+
+    .side-panel a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 28px;
+      border: none;
+      background: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* HERO IMAGE --------------------------------------------------- */
+    .hero-image {
+      width: 100%;
+      height: 380px;
+      margin-top: 60px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    .hero-image::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 55%;
+      background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+    }
+
+    .hero-title {
+      position: absolute;
+      bottom: 35px;
+      left: 50px;
+      color: white;
+      font-size: 40px;
+      font-weight: 400;
+    }
+
+    /* CARDS SECTION ------------------------------------------------ */
+    .cards-section {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 60px auto;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+
+    .card {
+      width: 48%;
+      background: #000;
+      color: white;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 30px;
+      background: linear-gradient(to top, #000, rgba(0,0,0,0.7));
+      margin-top: -80px;
+      padding-top: 100px;
+    }
+
+    .card-title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .card-text {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 18px;
+    }
+
+    .learn-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border: 1px solid white;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: .25s;
+    }
+
+    .learn-btn:hover {
+      background: white;
+      color: black;
+      transform: scale(1.05);
+    }
+
+    /* CONTACT FORM ------------------------------------------------ */
+    .contact-box {
+      max-width: 900px;
+      margin: 40px auto 100px auto;
+      padding: 40px;
+      background: #000;
+      color: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+
+    .contact-title {
+      font-size: 26px;
+      margin-bottom: 15px;
+    }
+
+    .contact-sub {
+      font-size: 15px;
+      opacity: 0.9;
+      margin-bottom: 25px;
+    }
+
+    .contact-box input,
+    .contact-box textarea {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      outline: none;
+    }
+
+    textarea {
+      height: 140px;
+      resize: none;
+    }
+
+    .contact-btn {
+      width: 180px;
+      padding: 12px;
+      border: 1px solid white;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.15rem;
+      border-radius: 6px;
+      transition: .3s ease;
+    }
+
+    .contact-btn:hover {
+      background: white;
+      color: black;
+      transform: scale(1.05);
+    }
+
+    .success-msg {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #4caf50;
+      display: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- SIDE PANEL -->
+  <div id="sidePanel" class="side-panel">
+    <button class="close-btn" onclick="closePanel()">×</button>
+    <a href="home.html">Home</a>
+    <a href="Dashboard.html">Dashboard</a>
+    <a href="events.html">Events</a>
+    <a href="Subsciption.html">Membership</a>
+    <a href="Garage.html">Garage</a>
+    <a href="Contact.html">Contact Us</a>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="menu-icon" onclick="openPanel()">☰</div>
+    <h1 class="logo">B A T &nbsp; G E A R</h1>
+  </nav>
+
+  <!-- HERO IMAGE -->
+  <div class="hero-image" style="background-image: url('https://images-porsche.imgix.net/-/media/A7372F533DBE46AF97ADFB2D296481BB_70312EBC68AD47E89090B5E04395C07D_PS24CUSID0003-porsche-dealer-with-customers?w=1759&q=45&dpr=2&auto=format');">
+    <div class="hero-title">Help & Contact.</div>
+  </div>
+
+  <!-- TWO CARDS -->
+  <div class="cards-section">
+    <div class="card">
+      <img src="/template/softwareupdate.png">
+      <div class="card-content">
+        <div class="card-title">Software update.</div>
+        <div class="card-text">Check the latest updates for your Bat Gear mod systems.</div>
+        <a href="#" class="learn-btn">Learn more</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="/template/servicediscovery.png">
+      <div class="card-content">
+        <div class="card-title">Service activities.</div>
+        <div class="card-text">See whether your vehicle needs assistance or maintenance.</div>
+        <a href="#" class="learn-btn">Learn more</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT FORM -->
+  <div class="contact-box">
+    <div class="contact-title">Contact Support</div>
+    <div class="contact-sub">Have questions? Reach out and we’ll get back to you.</div>
+
+    <input type="text" id="name" placeholder="Your Name">
+    <input type="email" id="email" placeholder="Email Address">
+    <textarea id="message" placeholder="Your Message..."></textarea>
+
+    <button class="contact-btn" onclick="sendContact()">Submit</button>
+
+    <div class="success-msg" id="successMsg">Your message has been sent!</div>
+  </div>
+
+  <script>
+    function openPanel() {
+      document.getElementById("sidePanel").style.left = "0";
+    }
+
+    function closePanel() {
+      document.getElementById("sidePanel").style.left = "-250px";
+    }
+
+    async function sendContact() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !message) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      const response = await fetch("http://localhost:5501/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message })
+      });
+
+      if (response.ok) {
+        document.getElementById("successMsg").style.display = "block";
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("message").value = "";
+      } else {
+        alert("Error sending message.");
+      }
+    }
+  </script>
+
+</body>
+</html>
