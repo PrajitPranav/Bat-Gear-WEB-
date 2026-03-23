@@ -22,7 +22,6 @@
       overflow-x: hidden;
     }
 
-    /* Navbar */
     .navbar {
       position: fixed;
       top: 0;
@@ -53,7 +52,6 @@
       color: white;
     }
 
-    /* Membership Section */
     .membership-section {
       padding: 120px 5% 80px;
       text-align: center;
@@ -61,17 +59,16 @@
 
     .membership-title {
   font-size: 2.5rem;
-  font-weight: 100; /* Same thin weight as navbar text */
+  font-weight: 100; 
   letter-spacing: 0.3rem;
   margin-bottom: 50px;
   text-transform: uppercase;
   font-family: 'Raleway', sans-serif;
-  color: black; /* Make it black */
+  color: black; 
   
 }
 
 
-    /* Membership Cards Layout */
     .membership-cards {
       display: flex;
       justify-content: center;
@@ -96,7 +93,6 @@
       border: none;
     }
 
-    /* Middle Card Highlight */
     .card:nth-child(2) {
       transform: scale(1.08);
       width: 300px;
@@ -104,7 +100,6 @@
       animation-delay: 0.2s;
     }
 
-    /* Content inside cards */
     .card h2 {
       font-size: 1.3rem;
       font-weight: 700;
@@ -121,14 +116,12 @@
       margin-bottom: 20px;
     }
 
-    /* Price at bottom */
     .price {
       font-size: 1.2rem;
       font-weight: 700;
       margin-bottom: 12px;
     }
 
-    /* Buy Membership Button */
     .buy-btn {
       display: inline-block;
       padding: 12px 28px;
@@ -146,7 +139,6 @@
       transition: color 0.3s ease, transform 0.3s ease;
     }
 
-    /* Smooth Outline Animation */
     .buy-btn::before {
       content: "";
       position: absolute;
@@ -169,13 +161,11 @@
       color: white;
     }
 
-    /* Card hover */
     .card:hover {
       transform: scale(1.04);
       box-shadow: 0px 8px 25px rgba(255, 255, 255, 0.15);
     }
 
-    /* Fade-in Animation */
     @keyframes fadeUp {
       to {
         opacity: 1;
@@ -183,7 +173,6 @@
       }
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .membership-cards {
         flex-direction: column;
@@ -197,7 +186,6 @@
       }
     }
 
-    /* Side Panel */
     .side-panel {
       height: 100%;
       width: 250px;
