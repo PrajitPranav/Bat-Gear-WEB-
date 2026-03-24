@@ -211,24 +211,45 @@
 
   /* =================== Send Notification Request =================== */
   async function submitNotify() {
-    const name = document.getElementById("notifyName").value;
-    const email = document.getElementById("notifyEmail").value;
+    const name    = document.getElementById("notifyName").value.trim();
+    const email   = document.getElementById("notifyEmail").value.trim();
+    const btn     = document.querySelector(".popup-btn");
 
     if (!name || !email) {
       alert("Please fill out both fields.");
       return;
     }
 
-    const res = await fetch("/notify", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email })
-    });
+    btn.disabled = true;
+    btn.textContent = "Subscribing…";
 
-    const data = await res.json();
-    alert(data.message);
+    try {
+      const res  = await fetch("/api/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email }),
+      });
+      const data = await res.json();
 
-    closePopup();
+      if (res.ok) {
+        // Replace form content with success state
+        document.querySelector(".popup-box").innerHTML = `
+          <div style="text-align:center; padding: 20px 0; color:white; font-family:'Raleway',sans-serif;">
+            <div style="font-size:40px; margin-bottom:16px;">✓</div>
+            <h3 style="font-weight:300; font-size:1.3rem; margin-bottom:10px;">You're on the list.</h3>
+            <p style="color:rgba(255,255,255,0.6); font-size:0.88rem; line-height:1.7;">Check your inbox — we've sent a confirmation.<br>You'll be first to know about Bat Gear events.</p>
+            <button onclick="closePopup()" style="margin-top:24px; padding:10px 32px; background:white; color:black; border:none; border-radius:8px; font-family:'Raleway',sans-serif; font-weight:700; font-size:0.8rem; letter-spacing:0.15em; text-transform:uppercase; cursor:pointer;">Done</button>
+          </div>`;
+      } else {
+        btn.disabled = false;
+        btn.textContent = "Notify Me";
+        alert(data.error || "Subscription failed. Please try again.");
+      }
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = "Notify Me";
+      alert("Network error. Please try again.");
+    }
   }
 </script>
 

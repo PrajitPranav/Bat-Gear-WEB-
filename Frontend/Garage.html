@@ -269,8 +269,189 @@
         Experience unmatched customization, from raw chassis to street legend. Design your dream machine at Officine BatWorks – where innovation meets underground spirit. Precision meets passion in a journey from bolt to beast. It's time for your obsession to roar.
       </div>
       <a href="discovermore.html" class="feature-button">Discover More</a>
+      <button class="feature-button book-btn" onclick="openBooking()" style="margin-left:16px; cursor:pointer;">Book for a Cruise</button>
     </div>
   </section>
+
+  <!-- ===================== BOOKING MODAL ====================== -->
+  <div class="booking-overlay" id="bookingOverlay" onclick="handleOverlayClick(event)">
+    <div class="booking-box" id="bookingBox">
+      <div class="booking-close" onclick="closeBooking()">×</div>
+      <div class="booking-header">
+        <p class="booking-eyebrow">Bat Gear Garage</p>
+        <h2 class="booking-title">Book for a Cruise</h2>
+      </div>
+
+      <div id="bookingForm">
+        <div class="field-group">
+          <input type="text" id="bName" class="booking-input" placeholder="Full Name" required>
+        </div>
+        <div class="field-group">
+          <input type="email" id="bEmail" class="booking-input" placeholder="Email Address" required>
+        </div>
+        <div class="field-group">
+          <input type="tel" id="bPhone" class="booking-input" placeholder="Phone Number" required>
+        </div>
+        <div class="field-group">
+          <input type="text" id="bCar" class="booking-input" placeholder="Preferred Car (optional)">
+        </div>
+        <div class="field-group">
+          <textarea id="bMessage" class="booking-input booking-textarea" placeholder="Message (optional)"></textarea>
+        </div>
+
+        <button class="booking-submit" id="bookingSubmitBtn" onclick="submitBooking()">
+          <span id="bookingBtnText">Confirm Booking</span>
+        </button>
+        <div class="booking-error" id="bookingError"></div>
+      </div>
+
+      <div class="booking-success" id="bookingSuccess" style="display:none;">
+        <div class="success-icon">✓</div>
+        <h3>You're booked in.</h3>
+        <p>We'll reach out to confirm your cruise slot. See you on the road.</p>
+        <button class="booking-submit" onclick="closeBooking()" style="margin-top:20px;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .book-btn {
+      background: transparent;
+      border: 1px solid white;
+      color: white;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.9rem;
+      padding: 12px 24px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .book-btn:hover { background: white; color: black; }
+
+    .booking-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 5000;
+      padding: 20px;
+    }
+    .booking-overlay.open { display: flex; }
+
+    .booking-box {
+      width: 100%;
+      max-width: 480px;
+      background: rgba(15,15,15,0.96);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 36px 32px;
+      position: relative;
+      animation: bookingSlideIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    @keyframes bookingSlideIn {
+      from { opacity: 0; transform: scale(0.88) translateY(20px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .booking-close {
+      position: absolute;
+      top: 16px; right: 20px;
+      font-size: 26px;
+      color: rgba(255,255,255,0.5);
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .booking-close:hover { color: white; }
+
+    .booking-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 8px;
+    }
+
+    .booking-title {
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: white;
+      margin-bottom: 28px;
+      letter-spacing: 0.05em;
+    }
+
+    .field-group { margin-bottom: 14px; }
+
+    .booking-input {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      color: white;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .booking-input::placeholder { color: rgba(255,255,255,0.35); }
+    .booking-input:focus {
+      border-color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .booking-textarea {
+      height: 90px;
+      resize: none;
+    }
+
+    .booking-submit {
+      width: 100%;
+      padding: 14px;
+      margin-top: 8px;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .booking-submit:hover { background: rgba(255,255,255,0.88); transform: translateY(-1px); }
+    .booking-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .booking-error {
+      margin-top: 10px;
+      color: rgba(255,100,100,0.9);
+      font-size: 0.82rem;
+      min-height: 20px;
+    }
+
+    .booking-success { text-align: center; color: white; padding: 20px 0; }
+    .success-icon {
+      width: 60px; height: 60px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      font-size: 28px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .booking-success h3 { font-size: 1.4rem; font-weight: 300; margin-bottom: 10px; }
+    .booking-success p  { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.7; }
+  </style>
 
   <!-- JS for interactions -->
   <script>
@@ -285,6 +466,77 @@
 
     function closePanel() {
       document.getElementById('sidePanel').style.left = "-250px";
+    }
+
+    /* ── Booking Modal ── */
+    function openBooking() {
+      const overlay = document.getElementById('bookingOverlay');
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      // Reset form state
+      document.getElementById('bookingForm').style.display = 'block';
+      document.getElementById('bookingSuccess').style.display = 'none';
+      document.getElementById('bookingError').textContent = '';
+      ['bName','bEmail','bPhone','bCar','bMessage'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+    }
+
+    function closeBooking() {
+      document.getElementById('bookingOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('bookingOverlay')) closeBooking();
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeBooking();
+    });
+
+    async function submitBooking() {
+      const name        = document.getElementById('bName').value.trim();
+      const email       = document.getElementById('bEmail').value.trim();
+      const phone       = document.getElementById('bPhone').value.trim();
+      const preferredCar = document.getElementById('bCar').value.trim();
+      const message     = document.getElementById('bMessage').value.trim();
+      const errBox      = document.getElementById('bookingError');
+      const btn         = document.getElementById('bookingSubmitBtn');
+      const btnText     = document.getElementById('bookingBtnText');
+
+      errBox.textContent = '';
+
+      if (!name || !email || !phone) {
+        errBox.textContent = 'Please fill in Name, Email, and Phone.';
+        return;
+      }
+
+      btn.disabled = true;
+      btnText.textContent = 'Booking…';
+
+      try {
+        const res = await fetch('/api/bookings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, phone, preferredCar, message }),
+        });
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          document.getElementById('bookingForm').style.display = 'none';
+          document.getElementById('bookingSuccess').style.display = 'block';
+        } else {
+          errBox.textContent = data.error || 'Booking failed. Please try again.';
+          btn.disabled = false;
+          btnText.textContent = 'Confirm Booking';
+        }
+      } catch (err) {
+        errBox.textContent = 'Network error. Please check your connection.';
+        btn.disabled = false;
+        btnText.textContent = 'Confirm Booking';
+      }
     }
   </script>
 

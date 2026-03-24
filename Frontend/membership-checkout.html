@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bat Gear — Membership Checkout</title>
+  <title>Bat Gear â€” Membership Checkout</title>
   <meta name="description" content="Complete your Bat Gear membership purchase securely with Razorpay." />
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;700&display=swap" rel="stylesheet" />
   <!-- Razorpay Checkout SDK -->
@@ -274,39 +274,39 @@
 
   <!-- Navbar -->
   <nav class="navbar">
-    <a href="purchase.html" class="back-btn">← Plans</a>
+    <a href="purchase.html" class="back-btn">â† Plans</a>
     <div class="logo">B A T &nbsp; G E A R</div>
   </nav>
 
   <!-- Main -->
   <div class="page-wrapper">
     <div class="checkout-container">
-      <p class="step-label">Step 2 of 2 &nbsp;·&nbsp; Confirm &amp; Pay</p>
+      <p class="step-label">Step 2 of 2 &nbsp;Â·&nbsp; Confirm &amp; Pay</p>
 
       <!-- Order Summary -->
       <div class="summary-card">
         <p class="section-heading">Order Summary</p>
-        <h1 class="plan-name" id="plan-display-name">–</h1>
-        <p class="plan-desc" id="plan-desc">–</p>
+        <h1 class="plan-name" id="plan-display-name">â€“</h1>
+        <p class="plan-desc" id="plan-desc">â€“</p>
 
         <div class="divider"></div>
 
         <div class="price-row">
           <span class="price-label">Membership Fee</span>
-          <span class="price-value" id="price-display">–</span>
+          <span class="price-value" id="price-display">â€“</span>
         </div>
         <div class="price-row">
           <span class="price-label">GST (18%)</span>
-          <span class="price-value" id="gst-display">–</span>
+          <span class="price-value" id="gst-display">â€“</span>
         </div>
 
         <div class="price-total-row">
           <span class="price-total-label">Total</span>
-          <span class="price-total-value" id="total-display">–</span>
+          <span class="price-total-value" id="total-display">â€“</span>
         </div>
       </div>
 
-      <p class="secure-notice"><span>🔒</span> Payments secured by Razorpay. Your data is safe.</p>
+      <p class="secure-notice"><span>ðŸ”’</span> Payments secured by Razorpay. Your data is safe.</p>
 
       <!-- Pay Button -->
       <button class="pay-btn" id="pay-btn" onclick="openRazorpay()">
@@ -318,172 +318,159 @@
         Payment was not completed. Please try again or contact support at <strong>support@batgear.in</strong>.
       </div>
 
-      <p class="rzp-note">Powered by Razorpay &nbsp;·&nbsp; 100% Secure Checkout</p>
+      <p class="rzp-note">Powered by Razorpay &nbsp;Â·&nbsp; 100% Secure Checkout</p>
     </div>
   </div>
 
   <script>
-    // ─── Plan Registry ────────────────────────────────────────────────
+    // â”€â”€â”€ Plan Registry â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const PLANS = {
       'go-karting': {
         name: 'Go-Karting Pass',
         desc: 'Unlimited access to Bat Gear Go-Karting Arena for 1 month.',
-        baseAmount: 199900,           // ₹1,999 in paise
-        displayBase: '₹1,999',
+        baseAmount: 199900,
+        displayBase: 'â‚¹1,999',
       },
       'track-rider': {
         name: 'Track Rider',
-        desc: 'Track riding experience every weekend + exclusive workshops & pit access — 3 months.',
-        baseAmount: 499900,           // ₹4,999 in paise
-        displayBase: '₹4,999',
+        desc: 'Track riding experience every weekend + exclusive workshops & pit access â€” 3 months.',
+        baseAmount: 499900,
+        displayBase: 'â‚¹4,999',
       },
       'all-in-one-1yr': {
         name: 'All-in-One (1 Year)',
         desc: 'Full access to all Bat Gear events, rides, giveaways, and exclusive meets for 1 full year.',
-        baseAmount: 1499900,          // ₹14,999 in paise
-        displayBase: '₹14,999',
+        baseAmount: 1499900,
+        displayBase: 'â‚¹14,999',
       },
       'all-in-one-2yr': {
         name: 'All-in-One (2 Years)',
         desc: 'Full access to all Bat Gear events, rides, giveaways, and exclusive meets for 2 full years.',
-        baseAmount: 2499900,          // ₹24,999 in paise
-        displayBase: '₹24,999',
+        baseAmount: 2499900,
+        displayBase: 'â‚¹24,999',
       },
     };
 
-    // ─── Read URL Param ───────────────────────────────────────────────
+    // â”€â”€â”€ Read URL Param â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const params   = new URLSearchParams(window.location.search);
     const planSlug = params.get('plan') || '';
     const plan     = PLANS[planSlug];
 
-    // Redirect back if unknown plan
-    if (!plan) {
-      window.location.replace('purchase.html');
-    }
+    if (!plan) window.location.replace('purchase.html');
 
-    // ─── Populate UI ─────────────────────────────────────────────────
+    // â”€â”€â”€ Populate UI â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const GST_RATE = 0.18;
 
     function formatINR(paise) {
-      const rupees = paise / 100;
-      return '₹' + rupees.toLocaleString('en-IN');
+      return 'â‚¹' + (paise / 100).toLocaleString('en-IN');
     }
 
-    function populatePage() {
-      const gstAmount   = Math.round(plan.baseAmount * GST_RATE);
-      const totalAmount = plan.baseAmount + gstAmount;
+    const gstAmount   = Math.round(plan.baseAmount * GST_RATE);
+    const totalAmount = plan.baseAmount + gstAmount;
 
-      document.title = `Bat Gear — ${plan.name} Checkout`;
-      document.getElementById('plan-display-name').textContent = plan.name;
-      document.getElementById('plan-desc').textContent         = plan.desc;
-      document.getElementById('price-display').textContent     = plan.displayBase;
-      document.getElementById('gst-display').textContent       = formatINR(gstAmount);
-      document.getElementById('total-display').textContent     = formatINR(totalAmount);
+    document.title = `Bat Gear â€” ${plan.name} Checkout`;
+    document.getElementById('plan-display-name').textContent = plan.name;
+    document.getElementById('plan-desc').textContent         = plan.desc;
+    document.getElementById('price-display').textContent     = plan.displayBase;
+    document.getElementById('gst-display').textContent       = formatINR(gstAmount);
+    document.getElementById('total-display').textContent     = formatINR(totalAmount);
 
-      // Store total amount in paise on the button for Razorpay
-      document.getElementById('pay-btn').dataset.total = totalAmount;
+    // â”€â”€â”€ Razorpay Integration â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    const BACKEND = '';   // Same-origin (served by Express)
+
+    function showError(msg) {
+      const banner = document.getElementById('error-banner');
+      banner.textContent = msg;
+      banner.classList.add('show');
     }
 
-    populatePage();
+    function hideError() {
+      document.getElementById('error-banner').classList.remove('show');
+    }
 
-    // ─── Razorpay Integration ─────────────────────────────────────────
-    // Backend URL — adjust if your server runs on a different port/host
-    const BACKEND = 'http://localhost:5501';
-
-    // Fetched once on page load; stored here for use in openRazorpay()
-    let razorpayKeyId = null;
-
-    async function loadRazorpayKey() {
+    async function openRazorpay() {
       const payBtn = document.getElementById('pay-btn');
-      const errorBanner = document.getElementById('error-banner');
-
-      try {
-        const res  = await fetch(`${BACKEND}/api/razorpay/config`);
-        const data = await res.json();
-
-        if (!res.ok || !data.keyId) {
-          throw new Error(data.error || 'Key not available');
-        }
-
-        razorpayKeyId = data.keyId;
-        payBtn.disabled = false;   // enable Pay Now only after key is loaded
-
-      } catch (err) {
-        console.error('Could not load Razorpay config:', err);
-        payBtn.disabled = true;
-        errorBanner.textContent =
-          'Payment system is not configured yet. Please contact support or try again later.';
-        errorBanner.classList.add('show');
-      }
-    }
-
-    // Disable the button until the key is fetched, then load it
-    document.getElementById('pay-btn').disabled = true;
-    document.getElementById('pay-btn').textContent = 'Loading…';
-    loadRazorpayKey().then(() => {
-      if (razorpayKeyId) {
-        document.getElementById('pay-btn').textContent = 'Pay Now';
-      }
-    });
-
-    function openRazorpay() {
-      const payBtn      = document.getElementById('pay-btn');
-      const errorBanner = document.getElementById('error-banner');
-      const totalPaise  = parseInt(payBtn.dataset.total, 10);
-
-      if (!razorpayKeyId) {
-        errorBanner.textContent = 'Payment is not ready. Please refresh the page.';
-        errorBanner.classList.add('show');
-        return;
-      }
-
-      errorBanner.classList.remove('show');
+      hideError();
       payBtn.disabled = true;
-      payBtn.textContent = 'Opening Payment…';
-
-      const options = {
-        key:         razorpayKeyId,        // ← fetched from backend, never hardcoded
-        amount:      totalPaise,           // Must be in paise (100 paise = ₹1)
-        currency:    'INR',
-        name:        'Bat Gear',
-        description: plan.name,
-        image:       '',
-        prefill: { name: '', email: '', contact: '' },
-        theme: { color: '#ffffff', backdrop_color: '#000000' },
-        modal: {
-          ondismiss: function () {
-            payBtn.disabled = false;
-            payBtn.textContent = 'Pay Now';
-            errorBanner.classList.add('show');
-            errorBanner.textContent = 'Payment cancelled. You can try again anytime.';
-          }
-        },
-        handler: function (response) {
-          // Payment success — redirect to success page
-          const successUrl = new URL('payment-success.html', window.location.href);
-          successUrl.searchParams.set('plan',  planSlug);
-          successUrl.searchParams.set('txnId', response.razorpay_payment_id || 'N/A');
-          window.location.replace(successUrl.toString());
-        }
-      };
+      payBtn.textContent = 'Creating Orderâ€¦';
 
       try {
+        // Step 1: Create order on backend
+        const orderRes = await fetch(`${BACKEND}/api/create-order`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount: totalAmount, planName: plan.name }),
+        });
+        const orderData = await orderRes.json();
+
+        if (!orderRes.ok || !orderData.order_id) {
+          throw new Error(orderData.error || 'Failed to create order');
+        }
+
+        payBtn.textContent = 'Opening Paymentâ€¦';
+
+        // Step 2: Open Razorpay with real order_id
+        const options = {
+          key:         orderData.key_id,
+          amount:      orderData.amount,
+          currency:    orderData.currency || 'INR',
+          order_id:    orderData.order_id,    // â† the real Razorpay order
+          name:        'Bat Gear',
+          description: plan.name,
+          theme:       { color: '#ffffff', backdrop_color: '#000000' },
+          prefill:     { name: '', email: '', contact: '' },
+          modal: {
+            ondismiss: () => {
+              payBtn.disabled = false;
+              payBtn.textContent = 'Pay Now';
+              showError('Payment cancelled. You can try again anytime.');
+            },
+          },
+          handler: async (response) => {
+            // Step 3: Verify signature server-side
+            try {
+              const verRes = await fetch(`${BACKEND}/api/razorpay/verify`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  razorpay_order_id:   response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature:  response.razorpay_signature,
+                }),
+              });
+              const verData = await verRes.json();
+
+              if (verData.success) {
+                const url = new URL('payment-success.html', window.location.href);
+                url.searchParams.set('plan',  planSlug);
+                url.searchParams.set('txnId', response.razorpay_payment_id);
+                window.location.replace(url.toString());
+              } else {
+                payBtn.disabled = false;
+                payBtn.textContent = 'Pay Now';
+                showError('Payment verification failed. Contact support@batgear.in');
+              }
+            } catch (e) {
+              payBtn.disabled = false;
+              payBtn.textContent = 'Pay Now';
+              showError('Verification error. Contact support@batgear.in');
+            }
+          },
+        };
+
         const rzp = new Razorpay(options);
-        rzp.on('payment.failed', function (response) {
+        rzp.on('payment.failed', (resp) => {
           payBtn.disabled = false;
           payBtn.textContent = 'Pay Now';
-          errorBanner.textContent =
-            'Payment failed: ' + (response.error.description || 'Unknown error') +
-            '. Please try again or contact support.';
-          errorBanner.classList.add('show');
+          showError('Payment failed: ' + (resp.error.description || 'Unknown error'));
         });
         rzp.open();
+
       } catch (err) {
         payBtn.disabled = false;
         payBtn.textContent = 'Pay Now';
-        errorBanner.textContent = 'Could not initialize payment. Please refresh and try again.';
-        errorBanner.classList.add('show');
-        console.error('Razorpay init error:', err);
+        showError(err.message || 'Could not initialize payment. Please refresh and try again.');
+        console.error('Razorpay error:', err);
       }
     }
   </script>
