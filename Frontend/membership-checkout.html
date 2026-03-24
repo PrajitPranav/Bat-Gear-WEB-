@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bat Gear — Membership Checkout</title>
+  <meta name="description" content="Complete your Bat Gear membership purchase securely with Razorpay." />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;700&display=swap" rel="stylesheet" />
+  <!-- Razorpay Checkout SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <style>
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: 'Raleway', sans-serif;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* --- Navbar --- */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 60px;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .logo {
+      font-weight: 100;
+      font-size: 1.3rem;
+      letter-spacing: 0.6rem;
+      color: white;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .back-btn {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.6);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .back-btn:hover { color: white; }
+
+    /* --- Page Layout --- */
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 90px 20px 60px;
+    }
+
+    .checkout-container {
+      width: 100%;
+      max-width: 520px;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- Step Label --- */
+    .step-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 10px;
+    }
+
+    /* --- Order Summary Card --- */
+    .summary-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 32px 28px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      margin-bottom: 20px;
+    }
+
+    .section-heading {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 22px;
+    }
+
+    .plan-name {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .plan-desc {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin: 0 0 24px 0;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .price-label {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.05em;
+    }
+
+    .price-value {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    .price-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .price-total-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .price-total-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    /* --- Info Notice --- */
+    .secure-notice {
+      font-size: 0.7rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.05em;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .secure-notice span {
+      display: inline-block;
+      margin-right: 4px;
+      opacity: 0.6;
+    }
+
+    /* --- Pay Button --- */
+    .pay-btn {
+      width: 100%;
+      padding: 16px;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pay-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.08);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .pay-btn:hover {
+      box-shadow: 0 0 40px rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    .pay-btn:hover::after { opacity: 1; }
+
+    .pay-btn:active { transform: scale(0.98); }
+
+    .pay-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* --- Error Banner --- */
+    .error-banner {
+      display: none;
+      background: rgba(255,60,60,0.12);
+      border: 1px solid rgba(255,60,60,0.3);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-top: 16px;
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: rgba(255,120,120,0.9);
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+      animation: fadeInUp 0.3s ease;
+    }
+
+    .error-banner.show { display: block; }
+
+    /* --- Razorpay branding note --- */
+    .rzp-note {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.05em;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 480px) {
+      .summary-card { padding: 24px 20px; }
+      .plan-name { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="purchase.html" class="back-btn">← Plans</a>
+    <div class="logo">B A T &nbsp; G E A R</div>
+  </nav>
+
+  <!-- Main -->
+  <div class="page-wrapper">
+    <div class="checkout-container">
+      <p class="step-label">Step 2 of 2 &nbsp;·&nbsp; Confirm &amp; Pay</p>
+
+      <!-- Order Summary -->
+      <div class="summary-card">
+        <p class="section-heading">Order Summary</p>
+        <h1 class="plan-name" id="plan-display-name">–</h1>
+        <p class="plan-desc" id="plan-desc">–</p>
+
+        <div class="divider"></div>
+
+        <div class="price-row">
+          <span class="price-label">Membership Fee</span>
+          <span class="price-value" id="price-display">–</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label">GST (18%)</span>
+          <span class="price-value" id="gst-display">–</span>
+        </div>
+
+        <div class="price-total-row">
+          <span class="price-total-label">Total</span>
+          <span class="price-total-value" id="total-display">–</span>
+        </div>
+      </div>
+
+      <p class="secure-notice"><span>🔒</span> Payments secured by Razorpay. Your data is safe.</p>
+
+      <!-- Pay Button -->
+      <button class="pay-btn" id="pay-btn" onclick="openRazorpay()">
+        Pay Now
+      </button>
+
+      <!-- Error Banner -->
+      <div class="error-banner" id="error-banner">
+        Payment was not completed. Please try again or contact support at <strong>support@batgear.in</strong>.
+      </div>
+
+      <p class="rzp-note">Powered by Razorpay &nbsp;·&nbsp; 100% Secure Checkout</p>
+    </div>
+  </div>
+
+  <script>
+    // ─── Plan Registry ────────────────────────────────────────────────
+    const PLANS = {
+      'go-karting': {
+        name: 'Go-Karting Pass',
+        desc: 'Unlimited access to Bat Gear Go-Karting Arena for 1 month.',
+        baseAmount: 199900,           // ₹1,999 in paise
+        displayBase: '₹1,999',
+      },
+      'track-rider': {
+        name: 'Track Rider',
+        desc: 'Track riding experience every weekend + exclusive workshops & pit access — 3 months.',
+        baseAmount: 499900,           // ₹4,999 in paise
+        displayBase: '₹4,999',
+      },
+      'all-in-one-1yr': {
+        name: 'All-in-One (1 Year)',
+        desc: 'Full access to all Bat Gear events, rides, giveaways, and exclusive meets for 1 full year.',
+        baseAmount: 1499900,          // ₹14,999 in paise
+        displayBase: '₹14,999',
+      },
+      'all-in-one-2yr': {
+        name: 'All-in-One (2 Years)',
+        desc: 'Full access to all Bat Gear events, rides, giveaways, and exclusive meets for 2 full years.',
+        baseAmount: 2499900,          // ₹24,999 in paise
+        displayBase: '₹24,999',
+      },
+    };
+
+    // ─── Read URL Param ───────────────────────────────────────────────
+    const params   = new URLSearchParams(window.location.search);
+    const planSlug = params.get('plan') || '';
+    const plan     = PLANS[planSlug];
+
+    // Redirect back if unknown plan
+    if (!plan) {
+      window.location.replace('purchase.html');
+    }
+
+    // ─── Populate UI ─────────────────────────────────────────────────
+    const GST_RATE = 0.18;
+
+    function formatINR(paise) {
+      const rupees = paise / 100;
+      return '₹' + rupees.toLocaleString('en-IN');
+    }
+
+    function populatePage() {
+      const gstAmount   = Math.round(plan.baseAmount * GST_RATE);
+      const totalAmount = plan.baseAmount + gstAmount;
+
+      document.title = `Bat Gear — ${plan.name} Checkout`;
+      document.getElementById('plan-display-name').textContent = plan.name;
+      document.getElementById('plan-desc').textContent         = plan.desc;
+      document.getElementById('price-display').textContent     = plan.displayBase;
+      document.getElementById('gst-display').textContent       = formatINR(gstAmount);
+      document.getElementById('total-display').textContent     = formatINR(totalAmount);
+
+      // Store total amount in paise on the button for Razorpay
+      document.getElementById('pay-btn').dataset.total = totalAmount;
+    }
+
+    populatePage();
+
+    // ─── Razorpay Integration ─────────────────────────────────────────
+    // Backend URL — adjust if your server runs on a different port/host
+    const BACKEND = 'http://localhost:5501';
+
+    // Fetched once on page load; stored here for use in openRazorpay()
+    let razorpayKeyId = null;
+
+    async function loadRazorpayKey() {
+      const payBtn = document.getElementById('pay-btn');
+      const errorBanner = document.getElementById('error-banner');
+
+      try {
+        const res  = await fetch(`${BACKEND}/api/razorpay/config`);
+        const data = await res.json();
+
+        if (!res.ok || !data.keyId) {
+          throw new Error(data.error || 'Key not available');
+        }
+
+        razorpayKeyId = data.keyId;
+        payBtn.disabled = false;   // enable Pay Now only after key is loaded
+
+      } catch (err) {
+        console.error('Could not load Razorpay config:', err);
+        payBtn.disabled = true;
+        errorBanner.textContent =
+          'Payment system is not configured yet. Please contact support or try again later.';
+        errorBanner.classList.add('show');
+      }
+    }
+
+    // Disable the button until the key is fetched, then load it
+    document.getElementById('pay-btn').disabled = true;
+    document.getElementById('pay-btn').textContent = 'Loading…';
+    loadRazorpayKey().then(() => {
+      if (razorpayKeyId) {
+        document.getElementById('pay-btn').textContent = 'Pay Now';
+      }
+    });
+
+    function openRazorpay() {
+      const payBtn      = document.getElementById('pay-btn');
+      const errorBanner = document.getElementById('error-banner');
+      const totalPaise  = parseInt(payBtn.dataset.total, 10);
+
+      if (!razorpayKeyId) {
+        errorBanner.textContent = 'Payment is not ready. Please refresh the page.';
+        errorBanner.classList.add('show');
+        return;
+      }
+
+      errorBanner.classList.remove('show');
+      payBtn.disabled = true;
+      payBtn.textContent = 'Opening Payment…';
+
+      const options = {
+        key:         razorpayKeyId,        // ← fetched from backend, never hardcoded
+        amount:      totalPaise,           // Must be in paise (100 paise = ₹1)
+        currency:    'INR',
+        name:        'Bat Gear',
+        description: plan.name,
+        image:       '',
+        prefill: { name: '', email: '', contact: '' },
+        theme: { color: '#ffffff', backdrop_color: '#000000' },
+        modal: {
+          ondismiss: function () {
+            payBtn.disabled = false;
+            payBtn.textContent = 'Pay Now';
+            errorBanner.classList.add('show');
+            errorBanner.textContent = 'Payment cancelled. You can try again anytime.';
+          }
+        },
+        handler: function (response) {
+          // Payment success — redirect to success page
+          const successUrl = new URL('payment-success.html', window.location.href);
+          successUrl.searchParams.set('plan',  planSlug);
+          successUrl.searchParams.set('txnId', response.razorpay_payment_id || 'N/A');
+          window.location.replace(successUrl.toString());
+        }
+      };
+
+      try {
+        const rzp = new Razorpay(options);
+        rzp.on('payment.failed', function (response) {
+          payBtn.disabled = false;
+          payBtn.textContent = 'Pay Now';
+          errorBanner.textContent =
+            'Payment failed: ' + (response.error.description || 'Unknown error') +
+            '. Please try again or contact support.';
+          errorBanner.classList.add('show');
+        });
+        rzp.open();
+      } catch (err) {
+        payBtn.disabled = false;
+        payBtn.textContent = 'Pay Now';
+        errorBanner.textContent = 'Could not initialize payment. Please refresh and try again.';
+        errorBanner.classList.add('show');
+        console.error('Razorpay init error:', err);
+      }
+    }
+  </script>
+
+</body>
+</html>

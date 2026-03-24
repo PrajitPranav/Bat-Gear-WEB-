@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bat Gear — Payment Successful</title>
+  <meta name="description" content="Your Bat Gear membership has been activated." />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      font-family: 'Raleway', sans-serif;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 60px;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 100;
+      letter-spacing: 0.6rem;
+      color: white;
+    }
+
+    /* Page */
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px 60px;
+    }
+
+    .success-container {
+      text-align: center;
+      max-width: 500px;
+      width: 100%;
+      animation: riseIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Checkmark Circle */
+    .check-circle {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 32px;
+      position: relative;
+      animation: pulseRing 2.5s ease infinite;
+    }
+
+    @keyframes pulseRing {
+      0%   { box-shadow: 0 0 0 0   rgba(255,255,255,0.2); }
+      60%  { box-shadow: 0 0 0 20px rgba(255,255,255,0);   }
+      100% { box-shadow: 0 0 0 0   rgba(255,255,255,0);    }
+    }
+
+    .check-svg {
+      width: 36px;
+      height: 36px;
+    }
+
+    .check-path {
+      stroke: white;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      stroke-dasharray: 50;
+      stroke-dashoffset: 50;
+      animation: drawCheck 0.6s ease 0.3s forwards;
+    }
+
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* Text */
+    .success-label {
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 12px;
+    }
+
+    .success-heading {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .plan-label {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 36px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Info Card */
+    .info-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 26px 28px;
+      margin-bottom: 36px;
+      text-align: left;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .info-row:last-child { border-bottom: none; }
+
+    .info-key {
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .info-val {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.03em;
+      max-width: 56%;
+      text-align: right;
+      word-break: break-all;
+    }
+
+    /* Button */
+    .home-btn {
+      display: inline-block;
+      padding: 14px 36px;
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      border-radius: 8px;
+      color: white;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+      margin-bottom: 16px;
+    }
+
+    .home-btn:hover {
+      background: white;
+      color: black;
+      border-color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(255,255,255,0.15);
+    }
+
+    .support-note {
+      font-size: 0.68rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 480px) {
+      .success-heading { font-size: 1.5rem; }
+      .info-card { padding: 20px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">B A T &nbsp; G E A R</div>
+  </nav>
+
+  <!-- Success Content -->
+  <div class="page-wrapper">
+    <div class="success-container">
+
+      <!-- Animated Checkmark -->
+      <div class="check-circle">
+        <svg class="check-svg" viewBox="0 0 36 36">
+          <polyline class="check-path" points="6,18 14,26 30,10"></polyline>
+        </svg>
+      </div>
+
+      <p class="success-label">Payment Confirmed</p>
+      <h1 class="success-heading">Welcome Aboard!</h1>
+      <p class="plan-label" id="plan-label">Your membership is now active.</p>
+
+      <!-- Details Card -->
+      <div class="info-card">
+        <div class="info-row">
+          <span class="info-key">Plan</span>
+          <span class="info-val" id="detail-plan">—</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Transaction ID</span>
+          <span class="info-val" id="detail-txn">—</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Status</span>
+          <span class="info-val" style="color: rgba(150,255,150,0.8);">✓ Paid</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Date</span>
+          <span class="info-val" id="detail-date">—</span>
+        </div>
+      </div>
+
+      <a href="home.html" class="home-btn">Back to Home</a>
+      <p class="support-note">A confirmation will be sent to your registered email.</p>
+    </div>
+  </div>
+
+  <script>
+    const PLAN_NAMES = {
+      'go-karting':     'Go-Karting Pass',
+      'track-rider':    'Track Rider (3 Months)',
+      'all-in-one-1yr': 'All-in-One (1 Year)',
+      'all-in-one-2yr': 'All-in-One (2 Years)',
+    };
+
+    const params  = new URLSearchParams(window.location.search);
+    const slug    = params.get('plan')  || '';
+    const txnId   = params.get('txnId') || 'N/A';
+    const planName = PLAN_NAMES[slug] || (slug || 'Membership');
+
+    document.getElementById('plan-label').textContent =
+      `Your ${planName} membership is now active.`;
+    document.getElementById('detail-plan').textContent = planName;
+    document.getElementById('detail-txn').textContent  = txnId;
+    document.getElementById('detail-date').textContent =
+      new Date().toLocaleDateString('en-IN', {
+        day: 'numeric', month: 'long', year: 'numeric'
+      });
+  </script>
+</body>
+</html>

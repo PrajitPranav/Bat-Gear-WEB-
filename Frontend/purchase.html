@@ -15,7 +15,7 @@
     html, body {
       font-family: 'Raleway', sans-serif;
       background-color: black;
-      background-image: url(/template/unnamed.png);
+      background-image: url(template/unnamed.png);
       background-repeat: no-repeat;
       background-size: cover;
       color: white;
@@ -58,15 +58,14 @@
     }
 
     .membership-title {
-  font-size: 2.5rem;
-  font-weight: 100; 
-  letter-spacing: 0.3rem;
-  margin-bottom: 50px;
-  text-transform: uppercase;
-  font-family: 'Raleway', sans-serif;
-  color: black; 
-  
-}
+      font-size: 2.5rem;
+      font-weight: 100;
+      letter-spacing: 0.4rem;
+      margin-bottom: 60px;
+      text-transform: uppercase;
+      font-family: 'Raleway', sans-serif;
+      color: white;
+    }
 
 
     .membership-cards {
@@ -77,27 +76,45 @@
     }
 
     .card {
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       color: white;
-      border-radius: 15px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
       width: 260px;
       min-height: 420px;
-      padding: 25px 20px;
+      padding: 30px 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       opacity: 0;
       transform: translateY(40px);
       animation: fadeUp 0.7s ease forwards;
-      border: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
 
     .card:nth-child(2) {
-      transform: scale(1.08);
       width: 300px;
-      height: 500px;
+      min-height: 480px;
+      border-color: rgba(255, 255, 255, 0.25);
       animation-delay: 0.2s;
+      position: relative;
+    }
+
+    .card:nth-child(2)::after {
+      content: 'POPULAR';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      color: black;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      padding: 4px 12px;
+      border-radius: 20px;
     }
 
     .card h2 {
@@ -162,8 +179,45 @@
     }
 
     .card:hover {
-      transform: scale(1.04);
-      box-shadow: 0px 8px 25px rgba(255, 255, 255, 0.15);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .card:nth-child(2):hover {
+      transform: translateY(-8px);
+    }
+
+    /* Duration toggle for All-in-One */
+    .duration-toggle {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .toggle-btn {
+      flex: 1;
+      padding: 6px 8px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 6px;
+      color: rgba(255,255,255,0.5);
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .toggle-btn.active {
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.6);
+      color: white;
+    }
+
+    .toggle-btn:hover {
+      border-color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.9);
     }
 
     @keyframes fadeUp {
@@ -174,15 +228,22 @@
     }
 
     @media (max-width: 768px) {
+      .membership-title { font-size: 1.8rem; letter-spacing: 0.2rem; }
+
       .membership-cards {
         flex-direction: column;
         align-items: center;
+        gap: 28px;
       }
 
       .card, .card:nth-child(2) {
         width: 90%;
-        transform: none;
+        transform: none !important;
         height: auto;
+      }
+
+      .card:nth-child(2)::after {
+        top: -10px;
       }
     }
 
@@ -250,33 +311,46 @@
 
   <!-- Membership Section -->
   <section class="membership-section">
-    <h1 class="membership-title"><b>Choose Your Membership</b></h1>
+    <h1 class="membership-title">Choose Your Membership</h1>
 
     <div class="membership-cards">
+      <!-- Card 1: Go-Karting -->
       <div class="card">
-        <h2>Go-Karting Pass</h2>
-        <p>Unlimited access to Bat Gear Go-Karting Arena for 1 month.</p>
         <div>
-          <p class="price">₹1,999</p>
+          <h2>Go-Karting Pass</h2>
+          <p>Unlimited access to Bat Gear Go-Karting Arena for 1 month. Perfect for newcomers hitting the track.</p>
+        </div>
+        <div>
+          <p class="price">₹1,999 <span style="font-size:0.75rem;font-weight:300;opacity:0.6;">/ Month</span></p>
           <a href="membership-checkout.html?plan=go-karting" class="buy-btn">Buy Membership</a>
         </div>
       </div>
 
+      <!-- Card 2: Track Rider (featured) -->
       <div class="card">
-        <h2>Track Rider</h2>
-        <p>Track riding experience every weekend + exclusive workshops.</p>
         <div>
-          <p class="price">₹4,999 / 3 Months</p>
+          <h2>Track Rider</h2>
+          <p>Track riding experience every weekend + exclusive workshops & pit access with seasoned drivers.</p>
+        </div>
+        <div>
+          <p class="price">₹4,999 <span style="font-size:0.75rem;font-weight:300;opacity:0.6;">/ 3 Months</span></p>
           <a href="membership-checkout.html?plan=track-rider" class="buy-btn">Buy Membership</a>
         </div>
       </div>
 
+      <!-- Card 3: All-in-One with duration toggle -->
       <div class="card">
-        <h2>All-in-One</h2>
-        <p>1 Year or 2 Year Membership with full access to all events & rides.</p>
         <div>
-          <p class="price">₹14,999 / Yr | ₹24,999 / 2Yrs</p>
-          <a href="membership-checkout.html?plan=all-in-one" class="buy-btn">Buy Membership</a>
+          <h2>All-in-One</h2>
+          <p>Full access to all events, rides, giveaways & exclusive Bat Gear meets. Choose your duration.</p>
+        </div>
+        <div>
+          <div class="duration-toggle">
+            <button class="toggle-btn active" id="btn1yr" onclick="selectDuration('1yr')">1 Year</button>
+            <button class="toggle-btn" id="btn2yr" onclick="selectDuration('2yr')">2 Years</button>
+          </div>
+          <p class="price" id="aio-price">₹14,999 <span style="font-size:0.75rem;font-weight:300;opacity:0.6;">/&nbsp;Yr</span></p>
+          <a href="membership-checkout.html?plan=all-in-one-1yr" class="buy-btn" id="aio-btn">Buy Membership</a>
         </div>
       </div>
     </div>
@@ -286,9 +360,28 @@
     function openPanel() {
       document.getElementById('sidePanel').style.left = '0';
     }
-
     function closePanel() {
       document.getElementById('sidePanel').style.left = '-250px';
+    }
+
+    // All-in-One duration toggle
+    function selectDuration(dur) {
+      const priceEl = document.getElementById('aio-price');
+      const btnEl = document.getElementById('aio-btn');
+      const btn1yr = document.getElementById('btn1yr');
+      const btn2yr = document.getElementById('btn2yr');
+
+      if (dur === '1yr') {
+        priceEl.innerHTML = '₹14,999 <span style="font-size:0.75rem;font-weight:300;opacity:0.6;">/&nbsp;Yr</span>';
+        btnEl.href = 'membership-checkout.html?plan=all-in-one-1yr';
+        btn1yr.classList.add('active');
+        btn2yr.classList.remove('active');
+      } else {
+        priceEl.innerHTML = '₹24,999 <span style="font-size:0.75rem;font-weight:300;opacity:0.6;">/&nbsp;2 Yrs</span>';
+        btnEl.href = 'membership-checkout.html?plan=all-in-one-2yr';
+        btn2yr.classList.add('active');
+        btn1yr.classList.remove('active');
+      }
     }
   </script>
 
