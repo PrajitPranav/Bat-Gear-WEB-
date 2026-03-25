@@ -182,10 +182,11 @@
 
     <h2>Get Notified About Events</h2>
 
-    <input type="text" id="notifyName" placeholder="Your Name">
-    <input type="email" id="notifyEmail" placeholder="Your Email">
-
-    <button class="popup-btn" onclick="submitNotify()">Notify Me</button>
+    <form id="notifyForm" onsubmit="submitNotify(event)">
+      <input type="text" id="notifyName" placeholder="Your Name" required>
+      <input type="email" id="notifyEmail" placeholder="Your Email" required>
+      <button type="submit" class="popup-btn">Notify Me</button>
+    </form>
   </div>
 </div>
 
@@ -210,7 +211,8 @@
   }
 
   /* =================== Send Notification Request =================== */
-  async function submitNotify() {
+  async function submitNotify(event) {
+    if (event) event.preventDefault();
     const name    = document.getElementById("notifyName").value.trim();
     const email   = document.getElementById("notifyEmail").value.trim();
     const btn     = document.querySelector(".popup-btn");
@@ -224,7 +226,7 @@
     btn.textContent = "Subscribing…";
 
     try {
-      const res  = await fetch("/api/notify", {
+      const res  = await fetch("http://localhost:5501/api/notify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email }),

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bat Gear - Membership</title>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;700&display=swap" rel="stylesheet">
+  <title>Bat Gear - Memberships</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -14,280 +14,144 @@
 
     html, body {
       font-family: 'Raleway', sans-serif;
-      background-color: black;
-      background-image: url(template/unnamed.png);
-      background-repeat: no-repeat;
+      background: linear-gradient(135deg, rgba(8,8,8,0.9), rgba(0,0,0,0.98)), url('template/garage1.png') no-repeat center center fixed;
       background-size: cover;
       color: white;
+      min-height: 100vh;
       overflow-x: hidden;
     }
 
+    /* Navbar exact copy */
     .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 60px;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-      z-index: 1000;
+      position: fixed; top: 0; left: 0; width: 100%; height: 60px;
+      background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      display: flex; justify-content: space-between; align-items: center; padding: 0 20px; z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
-
-    .logo {
-      font-weight: 100;
-      font-size: 1.5rem;
-      letter-spacing: 0.6rem;
-      color: white;
-      text-align: center;
-      margin: 0 auto;
-    }
-
-    .menu-icon {
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: white;
-    }
-
-    .membership-section {
-      padding: 120px 5% 80px;
-      text-align: center;
-    }
-
-    .membership-title {
-      font-size: 2.5rem;
-      font-weight: 100;
-      letter-spacing: 0.4rem;
-      margin-bottom: 60px;
-      text-transform: uppercase;
-      font-family: 'Raleway', sans-serif;
-      color: white;
-    }
-
-
-    .membership-cards {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      color: white;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      width: 260px;
-      min-height: 420px;
-      padding: 30px 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      opacity: 0;
-      transform: translateY(40px);
-      animation: fadeUp 0.7s ease forwards;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    }
-
-    .card:nth-child(2) {
-      width: 300px;
-      min-height: 480px;
-      border-color: rgba(255, 255, 255, 0.25);
-      animation-delay: 0.2s;
-      position: relative;
-    }
-
-    .card:nth-child(2)::after {
-      content: 'POPULAR';
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: white;
-      color: black;
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      padding: 4px 12px;
-      border-radius: 20px;
-    }
-
-    .card h2 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .card p {
-      font-size: 1rem;
-      font-weight: 300;
-      line-height: 1.4;
-      flex-grow: 1;
-      margin-bottom: 20px;
-    }
-
-    .price {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .buy-btn {
-      display: inline-block;
-      padding: 12px 28px;
-      border-radius: 6px;
-      background: transparent;
-      color: white;
-      font-weight: bold;
-      font-size: 0.95rem;
-      border: none;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-      text-decoration: none;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-
-    .buy-btn::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border: 2px solid white;
-      border-radius: 6px;
-      transform: scaleX(0);
-      transform-origin: left;
-      opacity: 0;
-      transition: transform 0.5s ease, opacity 0.3s ease;
-    }
-
-    .buy-btn:hover::before {
-      transform: scaleX(1);
-      opacity: 1;
-    }
-
-    .buy-btn:hover {
-      transform: scale(1.03);
-      color: white;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 40px rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-
-    .card:nth-child(2):hover {
-      transform: translateY(-8px);
-    }
-
-    /* Duration toggle for All-in-One */
-    .duration-toggle {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-
-    .toggle-btn {
-      flex: 1;
-      padding: 6px 8px;
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 6px;
-      color: rgba(255,255,255,0.5);
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .toggle-btn.active {
-      background: rgba(255,255,255,0.15);
-      border-color: rgba(255,255,255,0.6);
-      color: white;
-    }
-
-    .toggle-btn:hover {
-      border-color: rgba(255,255,255,0.5);
-      color: rgba(255,255,255,0.9);
-    }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .membership-title { font-size: 1.8rem; letter-spacing: 0.2rem; }
-
-      .membership-cards {
-        flex-direction: column;
-        align-items: center;
-        gap: 28px;
-      }
-
-      .card, .card:nth-child(2) {
-        width: 90%;
-        transform: none !important;
-        height: auto;
-      }
-
-      .card:nth-child(2)::after {
-        top: -10px;
-      }
-    }
+    .logo { font-weight: 100; font-size: 1.5rem; letter-spacing: 0.6rem; color: white; text-align: center; margin: 0 auto; }
+    .menu-icon { font-size: 1.8rem; cursor: pointer; color: white; transition: 0.3s; }
+    .menu-icon:hover { text-shadow: 0 0 10px rgba(255,255,255,0.8); }
 
     .side-panel {
-      height: 100%;
-      width: 250px;
-      position: fixed;
-      top: 0;
-      left: -250px;
-      z-index: 1100;
-      padding-top: 60px;
-      transition: 0.3s ease;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
-      font-family: 'Raleway', sans-serif;
-      display: flex;
-      flex-direction: column;
+      height: 100%; width: 250px; position: fixed; top: 0; left: -250px; z-index: 1100; padding-top: 60px;
+      transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(20px);
+      display: flex; flex-direction: column; border-right: 1px solid rgba(255,255,255,0.1);
     }
-
     .side-panel a {
-      padding: 16px 24px;
-      text-decoration: none;
-      color: white;
-      font-size: 1rem;
-      letter-spacing: 0.3rem;
-      font-weight: 100;
-      text-transform: uppercase;
-      transition: 0.3s;
+      padding: 16px 24px; text-decoration: none; color: white; font-size: 1rem; letter-spacing: 0.3rem;
+      font-weight: 100; text-transform: uppercase; transition: 0.3s; border-left: 2px solid transparent;
+    }
+    .side-panel a:hover { background-color: rgba(255, 255, 255, 0.05); border-left-color: white; padding-left: 30px;}
+    .side-panel .close-btn { position: absolute; top: 10px; right: 20px; font-size: 28px; background: none; border: none; color: white; cursor: pointer; }
+
+    /* Layout */
+    .pricing-container {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 120px 20px 60px; min-height: 100vh; animation: fadeIn 0.8s ease-out forwards;
     }
 
-    .side-panel a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+    .header-text { text-align: center; margin-bottom: 50px; }
+    .header-text h1 { font-size: 2.8rem; font-weight: 100; letter-spacing: 0.5rem; text-transform: uppercase; margin-bottom: 10px; }
+    .header-text p { font-size: 1rem; font-weight: 300; letter-spacing: 0.1rem; color: rgba(255,255,255,0.6); }
+
+    .content-split {
+      display: flex; gap: 40px; max-width: 1400px; width: 100%;
+      flex-direction: column; align-items: center;
+    }
+    
+    @media (min-width: 1100px) {
+      .content-split { flex-direction: row; align-items: flex-start; justify-content: center; }
     }
 
-    .side-panel .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 28px;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
+    /* Cards Grid */
+    .cards-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; width: 100%; max-width: 900px;
     }
+
+    .plan-card {
+      background: rgba(25, 25, 25, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 30px 20px;
+      display: flex; flex-direction: column; cursor: pointer; position: relative; overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(20px); opacity: 0; animation: slideUpFade 0.7s forwards;
+    }
+    .plan-card:nth-child(1) { animation-delay: 0.1s; }
+    .plan-card:nth-child(2) { animation-delay: 0.2s; }
+    .plan-card:nth-child(3) { animation-delay: 0.3s; }
+    .plan-card:nth-child(4) { animation-delay: 0.4s; }
+
+    .plan-card::before {
+      content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+      opacity: 0; transition: opacity 0.4s ease;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255,255,255,0.05);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .plan-card:hover::before { opacity: 1; }
+
+    .plan-card.active {
+      background: rgba(40, 40, 40, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 30px rgba(255,255,255,0.1);
+      transform: scale(1.05); z-index: 10;
+    }
+
+    /* Highlighting Popular / Premium */
+    .tag {
+      position: absolute; top: 12px; right: 12px; font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.1rem; text-transform: uppercase; padding: 4px 10px; border-radius: 12px;
+    }
+    .tag-popular { background: rgba(255, 255, 255, 0.9); color: black; }
+    .tag-elite { background: linear-gradient(45deg, #d4af37, #fdfba8); color: black; box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+
+    .plan-name { font-size: 1.3rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1rem; margin-bottom: 8px; position:relative; z-index:1;}
+    .plan-desc { font-size: 0.85rem; font-weight: 300; line-height: 1.5; color: rgba(255,255,255,0.6); margin-bottom: 25px; flex-grow:1; position:relative; z-index:1;}
+    .plan-price { font-size: 1.8rem; font-weight: 300; position:relative; z-index:1;}
+    .plan-price span { font-size: 0.85rem; font-weight: 300; opacity: 0.5; }
+
+    /* Right Checkout Summary */
+    .summary-card {
+      background: rgba(10, 10, 10, 0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 24px; padding: 40px; width: 100%; max-width: 450px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); position: sticky; top: 100px;
+      animation: slideUpFade 0.8s 0.5s forwards; opacity: 0;
+    }
+
+    .summary-header { font-size: 1.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15rem; margin-bottom: 30px; text-align: center; }
+    
+    .detail-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 0.95rem; }
+    .detail-label { color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.05rem;}
+    .detail-val { font-weight: 600; text-align: right; }
+
+    .divider { height: 1px; background: rgba(255,255,255,0.1); margin: 25px 0; }
+    
+    .total-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;}
+    .total-label { font-size: 1.1rem; letter-spacing: 0.1rem; }
+    .total-val { font-size: 2.2rem; font-weight: 300; text-shadow: 0 0 15px rgba(255,255,255,0.2); transition: 0.3s; }
+
+    .pay-btn {
+      width: 100%; padding: 18px; background: white; color: black; font-family: 'Raleway', sans-serif;
+      font-size: 1rem; font-weight: 700; letter-spacing: 0.2rem; text-transform: uppercase;
+      border: none; border-radius: 12px; cursor: pointer; position: relative; overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .pay-btn::after {
+      content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+      transform: translateX(-100%); transition: transform 0.6s ease;
+    }
+    .pay-btn:hover { transform: scale(1.03); box-shadow: 0 10px 30px rgba(255,255,255,0.3); }
+    .pay-btn:hover::after { transform: translateX(100%); }
+    .pay-btn:active { transform: scale(0.98); }
+
+    .secure-text { text-align: center; font-size: 0.75rem; color: rgba(255, 255, 255, 0.4); margin-top: 20px; letter-spacing: 0.05rem; }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes slideUpFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
   </style>
 </head>
 <body>
@@ -298,92 +162,156 @@
     <div class="logo">B A T &nbsp; G E A R</div>
   </nav>
 
-  <!-- Side Panel Menu -->
+  <!-- Side Panel -->
   <div id="sidePanel" class="side-panel">
     <button class="close-btn" onclick="closePanel()">×</button>
     <a href="home.html">Home</a>
     <a href="Dashboard.html">Dashboard</a>
     <a href="events.html">Events</a>
-    <a href="Subsciption.html">Membership</a>
+    <a href="purchase.html">Membership</a>
     <a href="Garage.html">Garage</a>
     <a href="contactus.html">Contact Us</a>
+    <a href="Login.html" style="margin-top:auto; font-weight:700;">Account</a>
   </div>
 
-  <!-- Membership Section -->
-  <section class="membership-section">
-    <h1 class="membership-title">Choose Your Membership</h1>
+  <div class="pricing-container">
+    <div class="header-text">
+      <h1>Memberships</h1>
+      <p>Select your tier and upgrade your automotive experience.</p>
+    </div>
 
-    <div class="membership-cards">
-      <!-- Card 1: Go-Karting -->
-      <div class="card">
-        <div>
-          <h2>Go-Karting Pass</h2>
-          <p>Unlimited access to Bat Gear Go-Karting Arena for 1 month. Perfect for newcomers hitting the track.</p>
+    <div class="content-split">
+      <!-- Left: Selection Cards -->
+      <div class="cards-grid">
+        
+        <!-- Go-Karting -->
+        <div class="plan-card" onclick="selectPlan('Go-Karting Pass', '1 Month', 1999, this)">
+          <div class="plan-name">Go-Karting Pass</div>
+          <div class="plan-desc">Unlimited access to Bat Gear Go-Karting Arena for 1 month. Perfect for beginners.</div>
+          <div class="plan-price">₹1,999 <span>/mo</span></div>
         </div>
-        <div>
-          <p class="price">₹1,999 <span style="font-size:0.75rem;font-weight:300;opacity:0.6;">/ Month</span></p>
-          <a href="membership-checkout.html?plan=go-karting" class="buy-btn">Buy Membership</a>
+
+        <!-- Track Rider -->
+        <div class="plan-card active" onclick="selectPlan('Track Rider', '3 Months', 4999, this)">
+          <div class="tag tag-popular">Most Popular</div>
+          <div class="plan-name">Track Rider</div>
+          <div class="plan-desc">Weekend track access + exclusive workshops & pit access with seasoned drivers.</div>
+          <div class="plan-price">₹4,999 <span>/3mo</span></div>
         </div>
+
+        <!-- All in One -->
+        <div class="plan-card" onclick="selectPlan('All-in-One', '1 Year', 14999, this)">
+          <div class="plan-name">All-in-One</div>
+          <div class="plan-desc">Full access to all events, rides, car giveaways & VIP Bat Gear meets.</div>
+          <div class="plan-price">₹14,999 <span>/yr</span></div>
+        </div>
+
+        <!-- Premium Elite -->
+        <div class="plan-card" onclick="selectPlan('Premium Elite', '1 Year', 24999, this)">
+          <div class="tag tag-elite">VIP</div>
+          <div class="plan-name">Premium Elite</div>
+          <div class="plan-desc">Concierge service, garaging spots, private track days, and ultimate VIP perks.</div>
+          <div class="plan-price">₹24,999 <span>/yr</span></div>
+        </div>
+
       </div>
 
-      <!-- Card 2: Track Rider (featured) -->
-      <div class="card">
-        <div>
-          <h2>Track Rider</h2>
-          <p>Track riding experience every weekend + exclusive workshops & pit access with seasoned drivers.</p>
+      <!-- Right: Checkout -->
+      <div class="summary-card">
+        <div class="summary-header">Checkout Summary</div>
+        
+        <div class="detail-row">
+          <div class="detail-label">Selected Plan</div>
+          <div class="detail-val" id="sumName">Track Rider</div>
         </div>
-        <div>
-          <p class="price">₹4,999 <span style="font-size:0.75rem;font-weight:300;opacity:0.6;">/ 3 Months</span></p>
-          <a href="membership-checkout.html?plan=track-rider" class="buy-btn">Buy Membership</a>
+        <div class="detail-row">
+          <div class="detail-label">Duration</div>
+          <div class="detail-val" id="sumDuration">3 Months</div>
         </div>
-      </div>
+        
+        <div class="divider"></div>
 
-      <!-- Card 3: All-in-One with duration toggle -->
-      <div class="card">
-        <div>
-          <h2>All-in-One</h2>
-          <p>Full access to all events, rides, giveaways & exclusive Bat Gear meets. Choose your duration.</p>
+        <div class="total-row">
+          <div class="total-label">Total Due</div>
+          <div class="total-val" id="sumPrice">₹4,999</div>
         </div>
-        <div>
-          <div class="duration-toggle">
-            <button class="toggle-btn active" id="btn1yr" onclick="selectDuration('1yr')">1 Year</button>
-            <button class="toggle-btn" id="btn2yr" onclick="selectDuration('2yr')">2 Years</button>
-          </div>
-          <p class="price" id="aio-price">₹14,999 <span style="font-size:0.75rem;font-weight:300;opacity:0.6;">/&nbsp;Yr</span></p>
-          <a href="membership-checkout.html?plan=all-in-one-1yr" class="buy-btn" id="aio-btn">Buy Membership</a>
-        </div>
+
+        <button class="pay-btn" id="payBtn" onclick="processPayment()">Proceed to Pay</button>
+        <div class="secure-text">🔒 Secure Encrypted Checkout Connection</div>
       </div>
     </div>
-  </section>
+  </div>
 
   <script>
-    function openPanel() {
-      document.getElementById('sidePanel').style.left = '0';
-    }
-    function closePanel() {
-      document.getElementById('sidePanel').style.left = '-250px';
+    function openPanel() { document.getElementById('sidePanel').style.left = '0'; }
+    function closePanel() { document.getElementById('sidePanel').style.left = '-250px'; }
+    
+    // Auth Check on load
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = localStorage.getItem("batgear_user");
+      if(!user) {
+         document.getElementById('payBtn').innerText = "Login To Pay";
+      }
+    });
+
+    let currentPlan = "track-rider";
+
+    function selectPlan(name, duration, price, el) {
+      // Manage Active States
+      document.querySelectorAll('.plan-card').forEach(card => card.classList.remove('active'));
+      el.classList.add('active');
+
+      // Add mild pulse animation to total value to signify change
+      const priceEl = document.getElementById("sumPrice");
+      priceEl.style.opacity = 0;
+      
+      setTimeout(() => {
+        document.getElementById("sumName").textContent = name;
+        document.getElementById("sumDuration").textContent = duration;
+        priceEl.textContent = "₹" + price.toLocaleString("en-IN");
+        priceEl.style.opacity = 1;
+        currentPlan = name.toLowerCase().replace(/\s+/g, '-');
+      }, 200);
     }
 
-    // All-in-One duration toggle
-    function selectDuration(dur) {
-      const priceEl = document.getElementById('aio-price');
-      const btnEl = document.getElementById('aio-btn');
-      const btn1yr = document.getElementById('btn1yr');
-      const btn2yr = document.getElementById('btn2yr');
+    async function processPayment() {
+      const user = localStorage.getItem("batgear_user");
+      if(!user) {
+         window.location.href = "Login.html";
+         return;
+      }
 
-      if (dur === '1yr') {
-        priceEl.innerHTML = '₹14,999 <span style="font-size:0.75rem;font-weight:300;opacity:0.6;">/&nbsp;Yr</span>';
-        btnEl.href = 'membership-checkout.html?plan=all-in-one-1yr';
-        btn1yr.classList.add('active');
-        btn2yr.classList.remove('active');
-      } else {
-        priceEl.innerHTML = '₹24,999 <span style="font-size:0.75rem;font-weight:300;opacity:0.6;">/&nbsp;2 Yrs</span>';
-        btnEl.href = 'membership-checkout.html?plan=all-in-one-2yr';
-        btn2yr.classList.add('active');
-        btn1yr.classList.remove('active');
+      const btn = document.getElementById("payBtn");
+      btn.style.pointerEvents = "none";
+      btn.innerHTML = "Initializing...";
+      
+      try {
+        const uObj = JSON.parse(user);
+        
+        // Simulating Backend Payment Gateway Call then Updating User DB
+        setTimeout(async () => {
+           btn.innerHTML = "Processing...";
+           const response = await fetch("http://localhost:5501/api/admin/user/plan", {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email: uObj.email, plan: currentPlan, planLabel: document.getElementById("sumName").textContent })
+           });
+           
+           if(response.ok) {
+              window.location.href = `payment-success.html?plan=${currentPlan}`;
+           } else {
+              alert("Transaction failed to record to database.");
+              btn.style.pointerEvents = "auto";
+              btn.innerHTML = "Proceed to Pay";
+           }
+        }, 1500);
+
+      } catch(e) {
+        alert("Client error processing checkout");
+        btn.style.pointerEvents = "auto";
+        btn.innerHTML = "Proceed to Pay";
       }
     }
   </script>
-
 </body>
 </html>

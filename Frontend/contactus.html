@@ -300,11 +300,13 @@
     <div class="contact-title">Contact Support</div>
     <div class="contact-sub">Have questions? Reach out and we’ll get back to you.</div>
 
-    <input type="text" id="name" placeholder="Your Name">
-    <input type="email" id="email" placeholder="Email Address">
-    <textarea id="message" placeholder="Your Message..."></textarea>
+    <form id="contactForm" onsubmit="sendContact(event)">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Email Address" required>
+      <textarea id="message" placeholder="Your Message..." required></textarea>
 
-    <button class="contact-btn" onclick="sendContact()">Submit</button>
+      <button type="submit" class="contact-btn">Submit</button>
+    </form>
 
     <div class="success-msg" id="successMsg">Your message has been sent!</div>
   </div>
@@ -318,7 +320,9 @@
       document.getElementById("sidePanel").style.left = "-250px";
     }
 
-    async function sendContact() {
+    async function sendContact(event) {
+      if (event) event.preventDefault();
+
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const message = document.getElementById("message").value.trim();
@@ -328,19 +332,30 @@
         return;
       }
 
-      const response = await fetch("http://localhost:5501/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message })
-      });
+      const btn = document.querySelector(".contact-btn");
+      btn.disabled = true;
+      btn.textContent = "Sending...";
 
-      if (response.ok) {
-        document.getElementById("successMsg").style.display = "block";
-        document.getElementById("name").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("message").value = "";
-      } else {
-        alert("Error sending message.");
+      try {
+        const response = await fetch("http://localhost:5501/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, message })
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+          document.getElementById("successMsg").style.display = "block";
+          document.getElementById("successMsg").textContent = data.message || "Your message has been sent!";
+          document.getElementById("contactForm").reset();
+        } else {
+          alert(data.error || "Error sending message.");
+        }
+      } catch (err) {
+        alert("Network error. Please try again.");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Submit";
       }
     }
   </script>
