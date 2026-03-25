@@ -470,17 +470,19 @@
 
     // ─── Init ─────────────────────────────────────────────────────────
     window.addEventListener('DOMContentLoaded', async () => {
-      let email = localStorage.getItem('batgear_email');
-      if (!email) {
-        email = prompt('Enter your email to access the dashboard:');
-        if (!email || !email.includes('@')) {
-          alert('A valid email is required to use the dashboard.');
-          window.location.href = 'Login.html';
-          return;
-        }
-        localStorage.setItem('batgear_email', email.trim().toLowerCase());
+      const userStr = localStorage.getItem('batgear_user');
+      if (!userStr) {
+         // No active session -> Secure redirect
+         window.location.href = 'Login.html';
+         return;
       }
+      
+      const user = JSON.parse(userStr);
+      const email = user.email;
+      
       document.getElementById('userEmailBadge').textContent = email;
+      
+      // Load dependencies dynamically via the verified email token
       await loadUser(email);
       loadPaymentMethods(email);
       loadBookings(email);
@@ -685,7 +687,8 @@
 
     // ─── Logout ──────────────────────────────────────────────────────
     function logout() {
-      localStorage.removeItem('batgear_email');
+      localStorage.removeItem('batgear_user');
+      localStorage.removeItem('batgear_role');
       window.location.href = 'Login.html';
     }
   </script>

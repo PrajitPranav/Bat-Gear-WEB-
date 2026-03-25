@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bat Club Spotlight</title>
+  <link rel="stylesheet" href="Home.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;700&display=swap" rel="stylesheet">
+</head>
+<body style="background: #000; color: #fff;">
+
+<div id="sidePanel" class="side-panel">
+  <button class="close-btn" onclick="closePanel()">×</button>
+  <a href="home.html">Home</a>
+  <a href="Dashboard.html">Dashboard</a>
+  <a href="events.html">Events</a>
+  <a href="Subsciption.html">Membership</a>
+  <a href="Garage.html">Garage</a>
+</div>
+
+<nav class="navbar">
+  <div class="menu-icon" onclick="openPanel()">☰</div>
+  <div class="back-btn" onclick="window.history.back()" title="Go Back">←</div>
+  <h1 class="logo" onclick="window.location.href='home.html'" style="cursor:pointer;">B A T &nbsp; G E A R</h1>
+</nav>
+
+<section class="stories" style="min-height: 100vh; padding-top: 100px;">
+  <div class="stories-header" style="margin-bottom: 40px;">
+    <h2>FEATURED THIS WEEK</h2>
+    <a class="read-all" style="cursor:pointer; border: 1px solid white; padding: 5px 15px; border-radius: 20px;" onclick="window.location.href='contactus.html'">Submit Your Car</a>
+  </div>
+
+  <div class="story-cards" style="margin-bottom: 80px;">
+    <div class="story-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1);">
+      <img src="template/spotlight.png" alt="Car 1" />
+      <div class="story-card-content">
+        <p class="category">@DriftKing99</p>
+        <h3 style="font-weight: 300;">Nissan GTR R35</h3>
+        <p class="date" style="color:#ff3b3b;">Stage 3 Tuned • 850 HP</p>
+      </div>
+    </div>
+    <div class="story-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1);">
+      <img src="template/TRACK.png" alt="Car 2" />
+      <div class="story-card-content">
+        <p class="category">@NightRider</p>
+        <h3 style="font-weight: 300;">Porsche 911 GT3 RS</h3>
+        <p class="date" style="color:#ff3b3b;">Weissach Package • Track Ready</p>
+      </div>
+    </div>
+    <div class="story-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1);">
+      <img src="template/garage2.png" alt="Car 3" />
+      <div class="story-card-content">
+        <p class="category">@BruceW</p>
+        <h3 style="font-weight: 300;">Mercedes AMG GT Black Series</h3>
+        <p class="date" style="color:#ff3b3b;">Project One Tech • 720 HP</p>
+      </div>
+    </div>
+  </div>
+  <div class="stories-header">
+    <h2>TOP BUILDS</h2>
+  </div>
+
+  <div class="story-cards" style="margin-bottom: 80px;">
+    <div class="story-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); animation-delay: 0.2s;">
+      <img src="template/dragrace.png" alt="Car 4" />
+      <div class="story-card-content">
+        <p class="category">@QuarterMileDemon</p>
+        <h3 style="font-weight: 300;">Dodge Demon 170</h3>
+        <p class="date" style="color:#ff3b3b;">1025 HP • 8-Sec Pass</p>
+      </div>
+    </div>
+    <div class="story-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); animation-delay: 0.4s;">
+      <img src="template/trackday.png" alt="Car 5" />
+      <div class="story-card-content">
+        <p class="category">@ApexHunter</p>
+        <h3 style="font-weight: 300;">McLaren 765LT</h3>
+        <p class="date" style="color:#ff3b3b;">Full Carbon Body • Senna Brakes</p>
+      </div>
+    </div>
+    <div class="story-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); animation-delay: 0.6s;">
+      <img src="template/factory.png" alt="Car 6" />
+      <div class="story-card-content">
+        <p class="category">@EV.Overlord</p>
+        <h3 style="font-weight: 300;">Tesla Model S Plaid</h3>
+        <p class="date" style="color:#ff3b3b;">Unplugged Performance Aero</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="stories-header">
+    <h2>COMMUNITY HIGHLIGHTS</h2>
+  </div>
+
+  <div class="story-cards">
+    <div class="story-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); animation-delay: 0.8s;">
+      <img src="template/vintagecarshows.png" alt="Car 7" />
+      <div class="story-card-content">
+        <p class="category">@ClassicRevival</p>
+        <h3 style="font-weight: 300;">Shelby Cobra 427</h3>
+        <p class="date" style="color:#ff3b3b;">Original Numbers Matching</p>
+      </div>
+    </div>
+    <div class="story-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); animation-delay: 1.0s;">
+      <img src="template/formuladrift.png" alt="Car 8" />
+      <div class="story-card-content">
+        <p class="category">@SidewaysSam</p>
+        <h3 style="font-weight: 300;">Toyota Supra MK4</h3>
+        <p class="date" style="color:#ff3b3b;">Single Turbo • Angle Kit</p>
+      </div>
+    </div>
+    <div class="story-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); animation-delay: 1.2s;">
+      <img src="template/garage1.png" alt="Car 9" />
+      <div class="story-card-content">
+        <p class="category">@BavarianBeast</p>
+        <h3 style="font-weight: 300;">BMW M4 Competition</h3>
+        <p class="date" style="color:#ff3b3b;">KW HAS Setup • Eventuri Intake</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .story-card {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script>
+  function openPanel() { document.getElementById('sidePanel').style.left = '0'; }
+  function closePanel() { document.getElementById('sidePanel').style.left = '-250px'; }
+</script>
+</body>
+</html>

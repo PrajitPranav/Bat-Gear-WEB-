@@ -160,6 +160,32 @@ body {
   z-index: 2;
 }
 
+/* Global Back Button */
+.back-btn {
+  position: absolute;
+  left: 60px;
+  font-size: 22px;
+  font-weight: 300;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.back-btn:hover {
+  transform: scale(1.1);
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.15);
+}
+
 #prev {
   left: 10px;
 }
@@ -222,11 +248,16 @@ body {
   background-color: #1c1c1c;
   border-radius: 10px;
   overflow: hidden;
-  flex: 1 1 32%;
+  flex: 0 1 calc(33.333% - 16px);
   min-width: 300px;
   display: flex;
   flex-direction: column;
-  transition: none;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+}
+
+.story-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.8);
 }
 
 .story-card img {
@@ -374,5 +405,25 @@ footer a {
   .discover-heading {
     text-align: center;
     margin-left: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .story-card {
+    flex: 0 1 calc(50% - 12px);
+  }
+}
+
+@media (max-width: 650px) {
+  .story-card {
+    flex: 0 1 100%;
+  }
+  .back-btn {
+    left: 15px;
+    top: auto;
+  }
+  .menu-icon {
+    left: auto;
+    right: 20px;
   }
 }

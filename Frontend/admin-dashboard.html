@@ -125,6 +125,7 @@
       <div class="nav-item" onclick="switchTab('contacts', this)">Contact Messages</div>
       <div class="nav-item" onclick="switchTab('bookings', this)">Bookings</div>
       <div class="nav-item" onclick="switchTab('payments', this)">Payments</div>
+      <div class="nav-item" onclick="switchTab('events', this)">Events Portal</div>
     </div>
 
     <!-- Main Content -->
@@ -210,6 +211,33 @@
                 <tr><th>User Email</th><th>Card Holder</th><th>Card Mask</th><th>Expiry</th><th>Added</th></tr>
               </thead>
               <tbody id="paymentsBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- EVENTS TAB -->
+        <div id="events" class="tab-content">
+          <div class="section-header"><h1>Event Management</h1></div>
+          
+          <div style="margin-bottom: 30px; background: rgba(255,255,255,0.03); padding: 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
+            <h3 style="margin-bottom: 15px; font-weight: 300; letter-spacing:0.1rem;">Add / Edit Event</h3>
+            <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+              <input type="hidden" id="eventId">
+              <input type="text" id="evTitle" placeholder="Event Title (e.g. Formula Drift 2026)" style="padding:12px; flex:1; background:rgba(255,255,255,0.06); color:white; border:1px solid rgba(255,255,255,0.1); border-radius:8px; outline:none; font-family:'Raleway',sans-serif;">
+              <input type="date" id="evDate" style="padding:12px; background:rgba(255,255,255,0.06); color:white; border:1px solid rgba(255,255,255,0.1); border-radius:8px; outline:none; font-family:'Raleway',sans-serif;">
+            </div>
+            <textarea id="evDesc" placeholder="Event Description..." style="width:100%; padding:12px; background:rgba(255,255,255,0.06); color:white; border:1px solid rgba(255,255,255,0.1); border-radius:8px; outline:none; height:80px; margin-bottom: 20px; font-family:'Raleway',sans-serif;"></textarea>
+            
+            <button onclick="saveEvent()" class="logout-btn" style="background:white; color:black; font-weight:700;">Save Event</button>
+            <button onclick="clearEventForm()" class="logout-btn">Cancel</button>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr><th>Event Title</th><th>Date</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="eventsBody"></tbody>
             </table>
           </div>
         </div>
@@ -317,14 +345,92 @@
                       <td>${formatDate(s.createdAt)}</td>
                   </tr>`;
               });
+              
+              // Load Events Data
+              await loadEvents();
 
           } else {
               alert("Failed to load secure data");
           }
       } catch (e) {
-          console.error(e);
-          alert("Network Error loading dashboard.");
+          console.error("Admin Load Error", e);
       }
+  }
+
+  // Event Management Logic
+  async function loadEvents() {
+      try {
+          const res = await fetch("http://localhost:5501/api/events");
+          const data = await res.json();
+          const eBody = document.getElementById("eventsBody");
+          eBody.innerHTML = "";
+          if(data.events && data.events.length > 0) {
+              data.events.forEach(e => {
+                  let safeDesc = e.description.replace(/'/g, "\\'").replace(/"/g, '\\"');
+                  let safeTitle = e.title.replace(/'/g, "\\'").replace(/"/g, '\\"');
+                  eBody.innerHTML += `<tr>
+                      <td>${e.title}</td>
+                      <td>${formatDate(e.date)}</td>
+                      <td>
+                          <button class="badge" onclick="editEvent('${e._id}', '${safeTitle}', '${e.date}', '${safeDesc}')" style="cursor:pointer; background:rgba(255,255,255,0.2);">Edit</button>
+                          <button class="badge admin" onclick="deleteEvent('${e._id}')" style="cursor:pointer; margin-left:10px;">Delete</button>
+                      </td>
+                  </tr>`;
+              });
+          } else {
+              eBody.innerHTML = `<tr><td colspan="3" style="text-align:center; padding:20px; color:rgba(255,255,255,0.5);">No events found. Add one above.</td></tr>`;
+          }
+      } catch(err) { console.error("Event Fetch Error:", err); }
+  }
+
+  async function saveEvent() {
+      const id = document.getElementById("eventId").value;
+      const title = document.getElementById("evTitle").value.trim();
+      const date = document.getElementById("evDate").value;
+      const desc = document.getElementById("evDesc").value.trim();
+      
+      if(!title || !date || !desc) return alert("Please fill all event fields.");
+
+      let method = id ? "PUT" : "POST";
+      let url = id ? `http://localhost:5501/api/events/${id}` : "http://localhost:5501/api/events";
+      
+      try {
+          const res = await fetch(url, {
+              method,
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ title, date, description: desc })
+          });
+          if(res.ok) {
+             clearEventForm();
+             loadEvents();
+          } else {
+             alert("Error saving event");
+          }
+      } catch(err) { console.error(err); alert("Network error saving event."); }
+  }
+
+  function editEvent(id, title, dateStr, desc) {
+      document.getElementById("eventId").value = id;
+      document.getElementById("evTitle").value = title;
+      // Convert ISO string to YYYY-MM-DD for input type="date"
+      document.getElementById("evDate").value = dateStr.split("T")[0];
+      document.getElementById("evDesc").value = desc;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  async function deleteEvent(id) {
+      if(!confirm("Are you sure you want to delete this event?")) return;
+      try {
+          const res = await fetch(`http://localhost:5501/api/events/${id}`, { method: "DELETE" });
+          if(res.ok) loadEvents();
+      } catch(err) { console.error(err); }
+  }
+
+  function clearEventForm() {
+      document.getElementById("eventId").value = "";
+      document.getElementById("evTitle").value = "";
+      document.getElementById("evDate").value = "";
+      document.getElementById("evDesc").value = "";
   }
 
   loadAdminData();

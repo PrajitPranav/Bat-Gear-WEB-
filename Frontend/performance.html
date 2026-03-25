@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Performance Mods</title>
+  <link rel="stylesheet" href="Home.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;700&display=swap" rel="stylesheet">
+  <style>
+    body { background: #070707; color: #fff; font-family: 'Raleway', sans-serif; overflow-x: hidden; }
+    .mod-section { padding: 40px; margin: 40px auto; max-width: 1100px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; backdrop-filter: blur(15px); transition: transform 0.4s; }
+    .mod-section:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.9); border-color: rgba(255,255,255,0.15); }
+    .mod-title { font-size: 1.8rem; font-weight: 300; letter-spacing: 0.15rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 30px; text-transform: uppercase; color: #f0f0f0; }
+    .mod-desc { flex:1; font-weight:300; line-height: 2; color:rgba(255,255,255,0.7); min-width:300px; font-size: 1.05rem; }
+  </style>
+</head>
+<body>
+
+<div id="sidePanel" class="side-panel">
+  <button class="close-btn" onclick="closePanel()">×</button>
+  <a href="home.html">Home</a>
+  <a href="Dashboard.html">Dashboard</a>
+  <a href="events.html">Events</a>
+</div>
+
+<nav class="navbar">
+  <div class="menu-icon" onclick="openPanel()">☰</div>
+  <div class="back-btn" onclick="window.history.back()" title="Go Back">←</div>
+  <h1 class="logo" onclick="window.location.href='home.html'" style="cursor:pointer;">B A T &nbsp; G E A R</h1>
+</nav>
+
+<div style="min-height: 100vh; padding-top: 120px; padding-bottom: 80px;">
+  <div style="text-align:center; margin-bottom: 70px;">
+    <h1 style="font-size: 3rem; font-weight: 100; letter-spacing: 0.4rem;">PERFORMANCE</h1>
+    <p style="color: rgba(255,255,255,0.4); letter-spacing: 0.15rem; margin-top:10px; font-weight:300;">Elevate your driving experience.</p>
+  </div>
+
+  <div class="mod-section">
+    <h2 class="mod-title">Stage 1: ECU Remaps & Intakes</h2>
+    <div style="display:flex; gap: 40px; align-items:center; flex-wrap:wrap;">
+       <img src="template/Perfomance.png" style="width:45%; min-width:300px; border-radius:12px; object-fit:cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+       <div class="mod-desc">
+          Unlock hidden power without replacing core internals. A robust Stage 1 tune optimizes air-fuel ratios, adjusts ignition timing, and pairs flawlessly with high-flow cold air intakes to deliver an instant 15-20% boost in overall horsepower. Excellent for daily-driven vehicles seeking a sharper throttle response.
+       </div>
+    </div>
+  </div>
+
+  <div class="mod-section">
+    <h2 class="mod-title">Stage 2: Exhaust Systems & Downpipes</h2>
+    <div style="display:flex; gap: 40px; align-items:center; flex-wrap:wrap; flex-direction:row-reverse;">
+       <img src="template/TRACKBW.png" style="width:45%; min-width:300px; border-radius:12px; object-fit:cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+       <div class="mod-desc">
+          De-restrict your engine breathing. By upgrading to decat or high-flow sports cat downpipes coupled with a titanium cat-back exhaust system, backpressure is vastly reduced. This stage unlocks aggressive exhaust notes and paves the way for advanced mid-range torque delivery.
+       </div>
+    </div>
+  </div>
+
+  <div class="mod-section">
+    <h2 class="mod-title">Stage 3: Suspension Dynamics</h2>
+    <div style="display:flex; gap: 40px; align-items:center; flex-wrap:wrap;">
+       <img src="template/formuladrift.png" style="width:45%; min-width:300px; border-radius:12px; object-fit:cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+       <div class="mod-desc">
+          Power requires control. Upgrading to fully adjustable coilovers or pneumatic air suspension systems drastically drops the center of gravity, dials out massive body roll, and optimizes track camber geometries. Essential for canyon carving and rigorous track days.
+       </div>
+    </div>
+  </div>
+
+  <div class="mod-section">
+    <h2 class="mod-title">Stage 4: Carbon Ceramic Brakes (CCB)</h2>
+    <div style="display:flex; gap: 40px; align-items:center; flex-wrap:wrap; flex-direction:row-reverse;">
+       <img src="template/garage2.png" style="width:45%; min-width:300px; border-radius:12px; object-fit:cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+       <div class="mod-desc">
+          Shed unsprung mass to conquer brake fade completely. Multi-piston slotted or carbon-ceramic big brake kits dramatically shorten stopping distances even under immense thermal stress gradients from continuous 150mph to 0 braking cycles.
+       </div>
+    </div>
+  </div>
+
+  <div class="mod-section">
+    <h2 class="mod-title">Stage 5: High-Downforce Aerodynamics</h2>
+    <div style="display:flex; gap: 40px; align-items:center; flex-wrap:wrap;">
+       <img src="template/trackday.png" style="width:45%; min-width:300px; border-radius:12px; object-fit:cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+       <div class="mod-desc">
+          Bend the air to your absolute will. Implementing dry carbon splitters, specialized canards, flat underfloors, and active swan-neck rear wings mechanically forces the chassis into the tarmac, allowing staggering high-speed cornering stability.
+       </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function openPanel() { document.getElementById('sidePanel').style.left = '0'; }
+  function closePanel() { document.getElementById('sidePanel').style.left = '-250px'; }
+</script>
+</body>
+</html>

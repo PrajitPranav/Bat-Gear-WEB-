@@ -246,6 +246,7 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="menu-icon" onclick="openPanel()">☰</div>
+    <div class="back-btn" onclick="window.history.back()" title="Go Back" style="position: absolute; left: 60px; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.05); transition: 0.3s; z-index: 1001; opacity:0.6;">←</div>
     <div class="logo">B A T &nbsp; G E A R</div>
   </nav>
 
@@ -268,8 +269,84 @@
       <div class="feature-description">
         Experience unmatched customization, from raw chassis to street legend. Design your dream machine at Officine BatWorks – where innovation meets underground spirit. Precision meets passion in a journey from bolt to beast. It's time for your obsession to roar.
       </div>
-      <a href="discovermore.html" class="feature-button">Discover More</a>
-      <button class="feature-button book-btn" onclick="openBooking()" style="margin-left:16px; cursor:pointer;">Book for a Cruise</button>
+      <button class="feature-button book-btn" onclick="openBooking()" style="cursor:pointer;">Book for a Cruise</button>
+    </div>
+  </section>
+
+  <!-- ===================== DISCOVER MORE GRID ====================== -->
+  <section class="garage-showcase" id="discoverMore">
+    <div class="showcase-header">
+      <h2>DISCOVER MORE</h2>
+      <div class="filter-tabs">
+        <button class="filter-btn active" onclick="filterGarage('all')">All</button>
+        <button class="filter-btn" onclick="filterGarage('sports')">Sports</button>
+        <button class="filter-btn" onclick="filterGarage('muscle')">Muscle</button>
+        <button class="filter-btn" onclick="filterGarage('electric')">Electric</button>
+      </div>
+    </div>
+
+    <div class="garage-grid" id="garageGrid">
+      
+      <!-- Card 1 -->
+      <div class="garage-card" data-category="sports">
+        <div class="img-wrapper"><img src="template/trackday.png" alt="Car 1"></div>
+        <div class="card-info">
+          <h3>Porsche 911 GT3 RS</h3>
+          <p>4.0L Flat-Six naturally aspirated track weapon. 520 HP with precision aerodynamics.</p>
+          <button class="explore-btn">Explore Build</button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="garage-card" data-category="muscle">
+        <div class="img-wrapper"><img src="template/dragrace.png" alt="Car 2"></div>
+        <div class="card-info">
+          <h3>Dodge Challenger Hellcat</h3>
+          <p>6.2L Supercharged V8 Hemi. 717 HP pure displacement dominance on the drag strip.</p>
+          <button class="explore-btn">Explore Build</button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="garage-card" data-category="sports">
+        <div class="img-wrapper"><img src="template/spotlight.png" alt="Car 3"></div>
+        <div class="card-info">
+          <h3>Nissan GT-R R35 Nismo</h3>
+          <p>3.8L Twin-Turbo V6. AWD monster outputting 600 HP with legendary launch control.</p>
+          <button class="explore-btn">Explore Build</button>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="garage-card" data-category="electric">
+        <div class="img-wrapper"><img src="template/factory.png" alt="Car 4"></div>
+        <div class="card-info">
+          <h3>Rimac Nevera</h3>
+          <p>Quad-Motor Electric Setup. 1914 HP delivering mind-bending instantaneous torque.</p>
+          <button class="explore-btn">Explore Build</button>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="garage-card" data-category="sports">
+        <div class="img-wrapper"><img src="template/formuladrift.png" alt="Car 5"></div>
+        <div class="card-info">
+          <h3>Mazda RX-7 FD</h3>
+          <p>1.3L 13B Rotary. A drift icon re-tuned to 450 HP holding aggressive angles.</p>
+          <button class="explore-btn">Explore Build</button>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="garage-card" data-category="muscle">
+        <div class="img-wrapper"><img src="template/vintagecarshows.png" alt="Car 6"></div>
+        <div class="card-info">
+          <h3>1969 Ford Mustang Boss</h3>
+          <p>Resto-mod 429 V8. A vintage classic infused with modern fuel injection & suspension.</p>
+          <button class="explore-btn">Explore Build</button>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -315,6 +392,126 @@
   </div>
 
   <style>
+    /* Garage Showcase Addition */
+    .garage-showcase {
+      padding: 80px 5%;
+      background: #000;
+      color: white;
+    }
+    .showcase-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .showcase-header h2 {
+      font-size: 2.5rem;
+      font-weight: 100;
+      letter-spacing: 0.5rem;
+      margin-bottom: 30px;
+    }
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.7);
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: 'Raleway', sans-serif;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.1rem;
+      transition: all 0.3s ease;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: white;
+      color: black;
+      border-color: white;
+    }
+    
+    .garage-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 1024px) { .garage-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 650px)  { .garage-grid { grid-template-columns: 1fr; } }
+    
+    .garage-card {
+      background: #111;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      animation: fadeIn 0.6s ease forwards;
+    }
+    .garage-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.8);
+      border-color: rgba(255,255,255,0.15);
+    }
+    .img-wrapper {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+    }
+    .img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .garage-card:hover .img-wrapper img {
+      transform: scale(1.08);
+    }
+    .card-info {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-info h3 {
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+    .card-info p {
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+      font-weight: 300;
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      flex: 1;
+    }
+    .explore-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      padding: 10px 0;
+      width: 100%;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Raleway', sans-serif;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.1rem;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    .explore-btn:hover {
+      background: white;
+      color: black;
+    }
+
     .book-btn {
       background: transparent;
       border: 1px solid white;
@@ -466,6 +663,21 @@
 
     function closePanel() {
       document.getElementById('sidePanel').style.left = "-250px";
+    }
+
+    /* ── Garage Filter ── */
+    function filterGarage(category) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      const cards = document.querySelectorAll('.garage-card');
+      cards.forEach(card => {
+         if(category === 'all' || card.dataset.category === category) {
+            card.style.display = 'flex';
+         } else {
+            card.style.display = 'none';
+         }
+      });
     }
 
     /* ── Booking Modal ── */
