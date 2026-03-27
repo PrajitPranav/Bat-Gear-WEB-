@@ -28,7 +28,6 @@
       overflow-x: hidden;
     }
 
-    /* ── NAVBAR ── */
     .navbar {
       position: fixed;
       top: 0; left: 0; width: 100%;
@@ -43,7 +42,6 @@
     .menu-icon { position: absolute; left: 20px; font-size: 22px; color: white; cursor: pointer; }
     .logo { font-weight: 100; font-size: 1.4rem; letter-spacing: 0.6rem; color: white; }
 
-    /* ── SIDE PANEL ── */
     .side-panel {
       height: 100%; width: 250px; position: fixed;
       top: 0; left: -250px;
@@ -64,7 +62,6 @@
       background: none; border: none; color: white; cursor: pointer;
     }
 
-    /* ── PAGE LAYOUT ── */
     .page-wrapper {
       max-width: 900px;
       margin: 0 auto;
@@ -88,7 +85,6 @@
       color: var(--muted);
     }
 
-    /* ── TAB NAV ── */
     .tab-nav {
       display: flex;
       gap: 0;
@@ -148,7 +144,6 @@
       line-height: 1.6;
     }
 
-    /* ── FORM FIELDS ── */
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .form-group { display: flex; flex-direction: column; gap: 6px; }
     .form-group.full { grid-column: 1/-1; }
@@ -197,7 +192,7 @@
     .save-msg { font-size: 0.78rem; color: rgba(100,220,100,0.9); opacity: 0; transition: opacity 0.4s; }
     .save-msg.show { opacity: 1; }
 
-    /* ── STATUS BADGE ── */
+  
     .badge {
       display: inline-block; padding: 4px 12px;
       border-radius: 20px; font-size: 0.7rem;
@@ -207,7 +202,7 @@
     .badge-expired { background: rgba(200,50,50,0.12); color: rgba(255,100,100,0.9); border: 1px solid rgba(200,60,60,0.25); }
     .badge-none { background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid var(--border); }
 
-    /* ── INFO ROWS ── */
+
     .info-row {
       display: flex; justify-content: space-between; align-items: center;
       padding: 14px 0; border-bottom: 1px solid var(--border);
@@ -216,7 +211,7 @@
     .info-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; }
     .info-value { font-size: 0.9rem; font-weight: 400; }
 
-    /* ── BOOKING TABLE ── */
+
     .bookings-table { width: 100%; border-collapse: collapse; }
     .bookings-table th, .bookings-table td {
       padding: 12px 16px; text-align: left;
@@ -227,7 +222,7 @@
     .bookings-table tr:last-child td { border-bottom: none; }
     .bookings-table td:first-child { font-weight: 600; }
 
-    /* ── CARD LIST ── */
+    
     .card-item {
       display: flex; align-items: center; justify-content: space-between;
       padding: 16px 0; border-bottom: 1px solid var(--border);
@@ -237,16 +232,16 @@
     .card-number { font-size: 1rem; font-weight: 300; letter-spacing: 0.1em; margin-top: 2px; }
     .card-meta { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
 
-    /* ── EMPTY STATES ── */
+ 
     .empty-state { text-align: center; padding: 48px 20px; color: var(--muted); }
     .empty-icon { font-size: 36px; margin-bottom: 16px; opacity: 0.4; }
     .empty-state p { font-size: 0.9rem; line-height: 1.7; }
 
-    /* ── SKELETON LOADER ── */
+  
     .skeleton { background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: 8px; height: 18px; margin-bottom: 10px; }
     @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
-    /* ── NOTIFICATION ITEM ── */
+    
     .notif-item {
       display: flex; gap: 14px; align-items: flex-start;
       padding: 14px 0; border-bottom: 1px solid var(--border);
@@ -256,7 +251,7 @@
     .notif-text { font-size: 0.88rem; line-height: 1.6; }
     .notif-time { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
 
-    /* ── RESPONSIVE ── */
+
     @media (max-width: 640px) {
       .page-wrapper { padding: 80px 16px 60px; }
       .form-grid { grid-template-columns: 1fr; }
@@ -268,7 +263,6 @@
 </head>
 <body>
 
-  <!-- SIDE PANEL -->
   <div id="sidePanel" class="side-panel">
     <button class="close-btn" onclick="closePanel()">×</button>
     <a href="home.html">Home</a>
@@ -278,7 +272,7 @@
     <a href="contactus.html">Contact Us</a>
   </div>
 
-  <!-- NAVBAR -->
+  
   <nav class="navbar">
     <div class="menu-icon" onclick="openPanel()">☰</div>
     <h1 class="logo">B A T &nbsp; G E A R</h1>
@@ -286,14 +280,14 @@
 
   <div class="page-wrapper">
 
-    <!-- PAGE HEADER -->
+   
     <div class="page-header">
       <p>Member Portal</p>
       <h1>Dashboard</h1>
       <span class="user-email-badge" id="userEmailBadge">Loading…</span>
     </div>
 
-    <!-- TAB NAV -->
+
     <div class="tab-nav">
       <button class="tab-btn active" data-tab="personal">Personal</button>
       <button class="tab-btn" data-tab="security">Login &amp; Security</button>
@@ -303,7 +297,6 @@
       <button class="tab-btn" data-tab="notifications">Notifications</button>
     </div>
 
-    <!-- ① PERSONAL DETAILS -->
     <section id="tab-personal" class="tab-section active">
       <div class="glass-card">
         <p class="card-label">Personal Details</p>
@@ -332,7 +325,7 @@
       </div>
     </section>
 
-    <!-- ② LOGIN & SECURITY -->
+
     <section id="tab-security" class="tab-section">
       <div class="glass-card">
         <p class="card-label">Login &amp; Security</p>
@@ -356,7 +349,7 @@
       </div>
     </section>
 
-    <!-- ③ PAYMENT METHODS -->
+  
     <section id="tab-payment" class="tab-section">
       <div class="glass-card" id="savedCardsCard">
         <p class="card-label">Saved Cards</p>
@@ -397,7 +390,7 @@
       </div>
     </section>
 
-    <!-- ④ MEMBERSHIP STATUS -->
+   
     <section id="tab-membership" class="tab-section">
       <div class="glass-card">
         <p class="card-label">Current Plan</p>
@@ -423,7 +416,7 @@
       </div>
     </section>
 
-    <!-- ⑤ BOOKINGS HISTORY -->
+   
     <section id="tab-bookings" class="tab-section">
       <div class="glass-card">
         <p class="card-label">Your Bookings</p>
@@ -434,7 +427,7 @@
       </div>
     </section>
 
-    <!-- ⑥ NOTIFICATIONS -->
+   
     <section id="tab-notifications" class="tab-section">
       <div class="glass-card">
         <p class="card-label">Event Subscriptions</p>
@@ -461,18 +454,18 @@
       </div>
     </section>
 
-  </div><!-- end page-wrapper -->
+  </div>
 
   <script>
     // ─── State ────────────────────────────────────────────────────────
     let currentUser = null;
-    const API       = '';  // same-origin
+    const API       = '';  
 
     // ─── Init ─────────────────────────────────────────────────────────
     window.addEventListener('DOMContentLoaded', async () => {
       const userStr = localStorage.getItem('batgear_user');
       if (!userStr) {
-         // No active session -> Secure redirect
+       
          window.location.href = 'Login.html';
          return;
       }
@@ -482,14 +475,13 @@
       
       document.getElementById('userEmailBadge').textContent = email;
       
-      // Load dependencies dynamically via the verified email token
+      
       await loadUser(email);
       loadPaymentMethods(email);
       loadBookings(email);
       loadNotifications(email);
     });
 
-    // ─── Load User ───────────────────────────────────────────────────
     async function loadUser(email) {
       try {
         const res  = await fetch(`${API}/api/user?email=${encodeURIComponent(email)}`);
@@ -512,7 +504,6 @@
       document.getElementById('secEmail').textContent     = u.email || '–';
       document.getElementById('secLastLogin').textContent = u.lastLogin ? new Date(u.lastLogin).toLocaleString('en-IN', { dateStyle:'medium', timeStyle:'short' }) : '–';
 
-      // Membership tab
       const planLabels = { 'none':'No Active Plan', 'go-karting':'Go-Karting Pass', 'track-rider':'Track Rider', 'all-in-one-1yr':'All-in-One (1 Year)', 'all-in-one-2yr':'All-in-One (2 Years)' };
       document.getElementById('memPlanLabel').textContent = u.planLabel || planLabels[u.plan] || 'No Active Plan';
       document.getElementById('memSlug').textContent      = u.plan !== 'none' ? u.plan : 'none';
@@ -532,7 +523,6 @@
       }
     }
 
-    // ─── Save Personal ───────────────────────────────────────────────
     async function savePersonal() {
       const email = localStorage.getItem('batgear_email');
       const name  = document.getElementById('fname').value.trim();
@@ -560,7 +550,6 @@
       }
     }
 
-    // ─── Load Payment Methods ────────────────────────────────────────
     async function loadPaymentMethods(email) {
       const list = document.getElementById('cardList');
       try {
@@ -629,7 +618,6 @@
       }
     }
 
-    // ─── Load Bookings ───────────────────────────────────────────────
     async function loadBookings(email) {
       const box = document.getElementById('bookingsContent');
       try {
@@ -653,7 +641,6 @@
       }
     }
 
-    // ─── Load Notifications ──────────────────────────────────────────
     async function loadNotifications(email) {
       const box = document.getElementById('notifContent');
       try {
@@ -671,7 +658,6 @@
       }
     }
 
-    // ─── Tab Switching ───────────────────────────────────────────────
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -681,11 +667,9 @@
       });
     });
 
-    // ─── Side Panel ──────────────────────────────────────────────────
     function openPanel() { document.getElementById('sidePanel').style.left = '0'; }
     function closePanel() { document.getElementById('sidePanel').style.left = '-250px'; }
 
-    // ─── Logout ──────────────────────────────────────────────────────
     function logout() {
       localStorage.removeItem('batgear_user');
       localStorage.removeItem('batgear_role');
