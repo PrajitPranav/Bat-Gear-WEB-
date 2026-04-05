@@ -112,12 +112,10 @@
     .tab-btn:hover { color: white; }
     .tab-btn.active { color: white; border-bottom-color: white; }
 
-    /* ── CONTENT SECTIONS ── */
     .tab-section { display: none; animation: fadeIn 0.3s ease; }
     .tab-section.active { display: block; }
     @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 
-    /* ── GLASS CARD ── */
     .glass-card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -167,7 +165,6 @@
     .field-input:focus { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.1); }
     .field-input:disabled { opacity: 0.5; cursor: default; }
 
-    /* ── BUTTONS ── */
     .btn {
       padding: 12px 28px;
       border-radius: 10px;
@@ -457,11 +454,9 @@
   </div>
 
   <script>
-    // ─── State ────────────────────────────────────────────────────────
     let currentUser = null;
     const API       = '';  
 
-    // ─── Init ─────────────────────────────────────────────────────────
     window.addEventListener('DOMContentLoaded', async () => {
       const userStr = localStorage.getItem('batgear_user');
       if (!userStr) {
@@ -500,7 +495,6 @@
       document.getElementById('fphone').value   = u.phone || '';
       document.getElementById('fjoined').value  = u.createdAt ? new Date(u.createdAt).toLocaleDateString('en-IN', { year:'numeric', month:'long', day:'numeric' }) : '–';
 
-      // Security tab
       document.getElementById('secEmail').textContent     = u.email || '–';
       document.getElementById('secLastLogin').textContent = u.lastLogin ? new Date(u.lastLogin).toLocaleString('en-IN', { dateStyle:'medium', timeStyle:'short' }) : '–';
 

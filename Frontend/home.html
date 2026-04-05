@@ -125,15 +125,12 @@
 </section>
 
   
-<!-- Footer -->
 <footer>
   <p>&copy; 2025 Bat Gear. All Rights Reserved.</p>
   <p><a href="#">Membership</a> | <a href="#">Contact Us</a> | <a href="#">Profile</a></p>
 </footer>
 
-<!-- Script -->
 <script>
-  // Carousel
   const slides = document.getElementById('slides');
   const totalSlides = slides.children.length;
   let index = 0;
@@ -157,7 +154,6 @@
     showSlide(index);
   }, 5000);
 
-  // Side Panel Menu
   function openPanel() {
     document.getElementById('sidePanel').style.left = '0';
   }
@@ -204,16 +200,13 @@
     }
   });
 
-  // Scroll wheel navigation in zoom mode
   zoomContainer.addEventListener('wheel', (e) => {
     if (!active) return;
 
     e.preventDefault();
     if (e.deltaY > 0) {
-      // Scroll down
       currentIndex = (currentIndex + 1) % zoomSlides.length;
     } else {
-      // Scroll up
       currentIndex = (currentIndex - 1 + zoomSlides.length) % zoomSlides.length;
     }
 

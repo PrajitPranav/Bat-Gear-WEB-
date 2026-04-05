@@ -15,7 +15,6 @@
       overflow-x: hidden;
     }
 
-    /* Navbar */
     .navbar {
       position: fixed; top: 0; left: 0; width: 100%; height: 60px;
       background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(15px);
@@ -32,12 +31,10 @@
     }
     .logout-btn:hover { background: white; color: black; }
 
-    /* Admin Container */
     .admin-container {
       display: flex; padding-top: 60px; min-height: 100vh;
     }
 
-    /* Sidebar */
     .sidebar {
       width: 260px; background: rgba(0,0,0,0.5); backdrop-filter: blur(20px);
       border-right: 1px solid rgba(255,255,255,0.08); padding: 30px 0;
@@ -53,7 +50,6 @@
       color: white; background: rgba(255,255,255,0.1); border-left-color: #fff; font-weight: 600;
     }
 
-    /* Main Content */
     .main-content {
       flex: 1; padding: 40px; overflow-y: auto;
     }
@@ -62,7 +58,6 @@
     }
     .section-header h1 { font-size: 2rem; font-weight: 300; letter-spacing: 0.1rem; }
     
-    /* Stats Row */
     .stats-row {
       display: flex; gap: 20px; margin-bottom: 40px;
     }
@@ -76,7 +71,6 @@
     .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1rem;}
     .stat-value { font-size: 2.2rem; font-weight: 600; }
 
-    /* Tables */
     .table-container {
       background: rgba(20, 20, 20, 0.6); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(10px);
       border-radius: 16px; overflow: hidden; animation: slideUp 0.6s ease;
@@ -111,14 +105,12 @@
 </head>
 <body>
 
-  <!-- Navbar -->
   <nav class="navbar">
     <div class="logo">B A T &nbsp; G E A R <span>ADMIN</span></div>
     <button class="logout-btn" onclick="logout()">Logout</button>
   </nav>
 
   <div class="admin-container">
-    <!-- Sidebar -->
     <div class="sidebar">
       <div class="nav-item active" onclick="switchTab('overview', this)">Overview</div>
       <div class="nav-item" onclick="switchTab('users', this)">Users & Subs</div>
@@ -128,13 +120,11 @@
       <div class="nav-item" onclick="switchTab('events', this)">Events Portal</div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
       <div id="loader">Fetching SECURE DATA...</div>
 
       <div id="dashboardData" style="display:none;">
         
-        <!-- OVERVIEW TAB -->
         <div id="overview" class="tab-content active">
           <div class="section-header"><h1>Dashboard Overview</h1></div>
           <div class="stats-row">
@@ -163,7 +153,6 @@
           </div>
         </div>
 
-        <!-- USERS TAB -->
         <div id="users" class="tab-content">
           <div class="section-header"><h1>User Management</h1></div>
           <div class="table-container">
@@ -176,7 +165,6 @@
           </div>
         </div>
 
-        <!-- CONTACTS TAB -->
         <div id="contacts" class="tab-content">
           <div class="section-header"><h1>Contact Messages</h1></div>
           <div class="table-container">
@@ -189,7 +177,6 @@
           </div>
         </div>
 
-        <!-- BOOKINGS TAB -->
         <div id="bookings" class="tab-content">
           <div class="section-header"><h1>Event Bookings</h1></div>
           <div class="table-container">
@@ -202,7 +189,6 @@
           </div>
         </div>
 
-        <!-- PAYMENTS TAB -->
         <div id="payments" class="tab-content">
           <div class="section-header"><h1>Payment Profiles</h1></div>
           <div class="table-container">
@@ -215,7 +201,6 @@
           </div>
         </div>
 
-        <!-- EVENTS TAB -->
         <div id="events" class="tab-content">
           <div class="section-header"><h1>Event Management</h1></div>
           
@@ -252,7 +237,6 @@
     return new Date(dateStr).toLocaleDateString('en-US', { day:'numeric', month:'short', year:'numeric' });
   }
 
-  // Auth Guard
   const role = localStorage.getItem("batgear_role");
   if(role !== "admin") {
       alert("Unauthorized Access. Admin privileges required.");
@@ -272,7 +256,6 @@
       el.classList.add('active');
   }
 
-  // Fetch Data
   async function loadAdminData() {
       try {
           const res = await fetch("http://localhost:5501/api/admin/dashboard");
@@ -282,7 +265,6 @@
               document.getElementById("loader").style.display = "none";
               document.getElementById("dashboardData").style.display = "block";
 
-              // Stats
               document.getElementById("statUsers").textContent = data.users.length;
               document.getElementById("statContacts").textContent = data.contacts.length;
               document.getElementById("statBookings").textContent = data.bookings.length;
@@ -290,7 +272,6 @@
               const activeMembersCount = data.users.filter(u => u.planStatus === 'active').length;
               document.getElementById("statMembers").textContent = activeMembersCount;
 
-              // Populate Users
               const uBody = document.getElementById("usersBody");
               data.users.forEach(u => {
                   uBody.innerHTML += `<tr>
@@ -302,7 +283,6 @@
                   </tr>`;
               });
 
-              // Populate Contacts
               const cBody = document.getElementById("contactsBody");
               data.contacts.forEach(c => {
                   cBody.innerHTML += `<tr>
@@ -313,7 +293,6 @@
                   </tr>`;
               });
 
-              // Populate Bookings
               const bBody = document.getElementById("bookingsBody");
               data.bookings.forEach(b => {
                   bBody.innerHTML += `<tr>
@@ -324,7 +303,6 @@
                   </tr>`;
               });
 
-              // Populate Payments
               const pBody = document.getElementById("paymentsBody");
               data.payments.forEach(p => {
                   pBody.innerHTML += `<tr>
@@ -336,7 +314,6 @@
                   </tr>`;
               });
               
-              // Recent Subscribers Overview
               const rsBody = document.getElementById("recentSubsBody");
               data.subscribers.slice(0, 5).forEach(s => {
                   rsBody.innerHTML += `<tr>
@@ -346,7 +323,6 @@
                   </tr>`;
               });
               
-              // Load Events Data
               await loadEvents();
 
           } else {
@@ -357,7 +333,6 @@
       }
   }
 
-  // Event Management Logic
   async function loadEvents() {
       try {
           const res = await fetch("http://localhost:5501/api/events");
@@ -412,7 +387,6 @@
   function editEvent(id, title, dateStr, desc) {
       document.getElementById("eventId").value = id;
       document.getElementById("evTitle").value = title;
-      // Convert ISO string to YYYY-MM-DD for input type="date"
       document.getElementById("evDate").value = dateStr.split("T")[0];
       document.getElementById("evDesc").value = desc;
       window.scrollTo({ top: 0, behavior: "smooth" });

@@ -6,7 +6,6 @@
   <title>Bat Gear â€” Membership Checkout</title>
   <meta name="description" content="Complete your Bat Gear membership purchase securely with Razorpay." />
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;700&display=swap" rel="stylesheet" />
-  <!-- Razorpay Checkout SDK -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <style>
     *, *::before, *::after {
@@ -21,7 +20,6 @@
       overflow-x: hidden;
     }
 
-    /* --- Navbar --- */
     .navbar {
       position: fixed;
       top: 0; left: 0;
@@ -67,7 +65,6 @@
 
     .back-btn:hover { color: white; }
 
-    /* --- Page Layout --- */
     .page-wrapper {
       min-height: 100vh;
       display: flex;
@@ -87,7 +84,6 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* --- Step Label --- */
     .step-label {
       font-size: 0.65rem;
       letter-spacing: 0.3em;
@@ -96,7 +92,6 @@
       margin-bottom: 10px;
     }
 
-    /* --- Order Summary Card --- */
     .summary-card {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.12);
@@ -177,7 +172,6 @@
       font-weight: 700;
     }
 
-    /* --- Info Notice --- */
     .secure-notice {
       font-size: 0.7rem;
       font-weight: 300;
@@ -193,7 +187,6 @@
       opacity: 0.6;
     }
 
-    /* --- Pay Button --- */
     .pay-btn {
       width: 100%;
       padding: 16px;
@@ -236,7 +229,6 @@
       transform: none;
     }
 
-    /* --- Error Banner --- */
     .error-banner {
       display: none;
       background: rgba(255,60,60,0.12);
@@ -254,7 +246,6 @@
 
     .error-banner.show { display: block; }
 
-    /* --- Razorpay branding note --- */
     .rzp-note {
       text-align: center;
       margin-top: 18px;
@@ -263,7 +254,6 @@
       letter-spacing: 0.05em;
     }
 
-    /* --- Responsive --- */
     @media (max-width: 480px) {
       .summary-card { padding: 24px 20px; }
       .plan-name { font-size: 1.3rem; }
@@ -272,18 +262,16 @@
 </head>
 <body>
 
-  <!-- Navbar -->
+
   <nav class="navbar">
     <a href="purchase.html" class="back-btn">â† Plans</a>
     <div class="logo">B A T &nbsp; G E A R</div>
   </nav>
 
-  <!-- Main -->
   <div class="page-wrapper">
     <div class="checkout-container">
       <p class="step-label">Step 2 of 2 &nbsp;Â·&nbsp; Confirm &amp; Pay</p>
 
-      <!-- Order Summary -->
       <div class="summary-card">
         <p class="section-heading">Order Summary</p>
         <h1 class="plan-name" id="plan-display-name">â€“</h1>
@@ -308,12 +296,11 @@
 
       <p class="secure-notice"><span>ðŸ”’</span> Payments secured by Razorpay. Your data is safe.</p>
 
-      <!-- Pay Button -->
       <button class="pay-btn" id="pay-btn" onclick="openRazorpay()">
         Pay Now
       </button>
 
-      <!-- Error Banner -->
+    
       <div class="error-banner" id="error-banner">
         Payment was not completed. Please try again or contact support at <strong>support@batgear.in</strong>.
       </div>
@@ -323,7 +310,6 @@
   </div>
 
   <script>
-    // â”€â”€â”€ Plan Registry â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const PLANS = {
       'go-karting': {
         name: 'Go-Karting Pass',
@@ -351,14 +337,12 @@
       },
     };
 
-    // â”€â”€â”€ Read URL Param â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const params   = new URLSearchParams(window.location.search);
     const planSlug = params.get('plan') || '';
     const plan     = PLANS[planSlug];
 
     if (!plan) window.location.replace('purchase.html');
 
-    // â”€â”€â”€ Populate UI â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const GST_RATE = 0.18;
 
     function formatINR(paise) {
@@ -375,8 +359,7 @@
     document.getElementById('gst-display').textContent       = formatINR(gstAmount);
     document.getElementById('total-display').textContent     = formatINR(totalAmount);
 
-    // â”€â”€â”€ Razorpay Integration â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    const BACKEND = '';   // Same-origin (served by Express)
+    const BACKEND = '';   
 
     function showError(msg) {
       const banner = document.getElementById('error-banner');
@@ -395,7 +378,6 @@
       payBtn.textContent = 'Creating Orderâ€¦';
 
       try {
-        // Step 1: Create order on backend
         const orderRes = await fetch(`${BACKEND}/api/create-order`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -409,12 +391,11 @@
 
         payBtn.textContent = 'Opening Paymentâ€¦';
 
-        // Step 2: Open Razorpay with real order_id
         const options = {
           key:         orderData.key_id,
           amount:      orderData.amount,
           currency:    orderData.currency || 'INR',
-          order_id:    orderData.order_id,    // â† the real Razorpay order
+          order_id:    orderData.order_id,    
           name:        'Bat Gear',
           description: plan.name,
           theme:       { color: '#ffffff', backdrop_color: '#000000' },
@@ -427,7 +408,6 @@
             },
           },
           handler: async (response) => {
-            // Step 3: Verify signature server-side
             try {
               const verRes = await fetch(`${BACKEND}/api/razorpay/verify`, {
                 method: 'POST',

@@ -21,7 +21,6 @@
       overflow: hidden;
     }
 
-    /* Left Side - Form */
     .left-side {
       flex: 1;
       display: flex;
@@ -146,7 +145,6 @@
       line-height: 1.6;
     }
 
-    /* Right Side - Image */
     .right-side {
       flex: 1;
       background: url('template/garage1.png') center center no-repeat;
@@ -161,18 +159,15 @@
       background: linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 50%);
     }
 
-    /* Form Togglers */
     #registerForm {
       display: none; /* Hidden by default */
     }
 
-    /* Animations */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(15px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Responsive */
     @media (max-width: 900px) {
       body {
         flex-direction: column-reverse;
@@ -202,11 +197,9 @@
 </head>
 <body>
 
-  <!-- Left Side: Forms -->
   <div class="left-side">
     <div class="brand-logo" onclick="window.location.href='home.html'">BAT GEAR</div>
 
-    <!-- LOGIN FORM -->
     <div class="form-container" id="loginForm">
       <div class="form-header">
         <h1>Bat Gear Login</h1>
@@ -229,7 +222,6 @@
       </div>
     </div>
 
-    <!-- REGISTER FORM -->
     <div class="form-container" id="registerForm">
       <div class="form-header">
         <h1>Create Account</h1>
@@ -257,11 +249,9 @@
     </div>
   </div>
 
-  <!-- Right Side: Cover Image -->
   <div class="right-side"></div>
 
   <script>
-    // Seamless Form Toggling
     function toggleForms(target) {
       const loginForm = document.getElementById('loginForm');
       const regForm = document.getElementById('registerForm');
@@ -279,7 +269,6 @@
       }
     }
 
-    // Unified Auth Processor
     async function processAuth(mode) {
       let endpoint, payload, btn;
 
@@ -302,7 +291,6 @@
         btn = document.getElementById("regBtn");
       }
 
-      // UI Loading State
       const originalText = btn.textContent;
       btn.textContent = "Processing...";
       btn.style.pointerEvents = "none";
@@ -317,7 +305,6 @@
 
         const data = await res.json();
         
-        // Reset UI State
         btn.textContent = originalText;
         btn.style.pointerEvents = "auto";
         btn.style.opacity = "1";
@@ -327,11 +314,9 @@
              alert("Account securely created! Please login.");
              toggleForms('login');
           } else {
-             // Save Session
              localStorage.setItem("batgear_user", JSON.stringify(data.user));
              localStorage.setItem("batgear_role", data.role);
              
-             // Dynamic Routing based on Role
              if (data.role === "admin") {
                 window.location.href = "admin-dashboard.html";
              } else {

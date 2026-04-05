@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ================= POPUP OVERLAY ================= */
     .popup-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -22,7 +21,6 @@
       z-index: 3000;
     }
 
-    /* ================= POPUP BOX ================= */
     .popup-box {
       width: 420px;
       background: rgba(0,0,0,0.80);
@@ -88,7 +86,6 @@
 </head>
 <body>
 
-<!-- ===================== Side Panel ====================== -->
 <div id="sidePanel" class="side-panel">
   <button class="close-btn" onclick="closePanel()">×</button>
   <a href="home.html">Home</a>
@@ -98,14 +95,12 @@
   <a href="contactus.html">Contact Us</a>
 </div>
 
-<!-- ===================== Navbar ====================== -->
 <nav class="navbar">
   <div class="menu-icon" onclick="openPanel()">☰</div>
   <div class="back-btn" onclick="window.history.back()" title="Go Back">←</div>
   <h1 class="logo">B A T &nbsp; G E A R</h1>
 </nav>
 
-<!-- ===================== Events Section ====================== -->
 <section class="stories">
   <div class="stories-header">
     <h2>EVENTS</h2>
@@ -113,12 +108,10 @@
   </div>
 
   <div id="dynamicEventsContainer" style="display: flex; flex-direction: column; gap: 40px; margin-top: 30px;">
-      <!-- JavaScript will inject dynamically generated grid layouts here from MongoDB -->
       <div style="text-align:center; color:rgba(255,255,255,0.5); padding: 50px;">Fetching Live Events...</div>
   </div>
 </section>
 
-<!-- ===================== POPUP MODAL ====================== -->
 <div class="popup-overlay" id="popupOverlay">
   <div class="popup-box">
     <div class="close-popup" onclick="closePopup()">×</div>
@@ -134,7 +127,6 @@
 </div>
 
 <script>
-  /* =================== Side Panel =================== */
   function openPanel() {
     document.getElementById('sidePanel').style.left = '0';
   }
@@ -143,17 +135,14 @@
     document.getElementById('sidePanel').style.left = '-250px';
   }
 
-  /* =================== Open Popup =================== */
   document.querySelector(".read-all").addEventListener("click", () => {
     document.getElementById("popupOverlay").style.display = "flex";
   });
 
-  /* =================== Close Popup =================== */
   function closePopup() {
     document.getElementById("popupOverlay").style.display = "none";
   }
 
-  /* =================== Send Notification Request =================== */
   async function submitNotify(event) {
     if (event) event.preventDefault();
     const name    = document.getElementById("notifyName").value.trim();
@@ -177,7 +166,6 @@
       const data = await res.json();
 
       if (res.ok) {
-        // Replace form content with success state
         document.querySelector(".popup-box").innerHTML = `
           <div style="text-align:center; padding: 20px 0; color:white; font-family:'Raleway',sans-serif;">
             <div style="font-size:40px; margin-bottom:16px;">✓</div>
@@ -198,7 +186,6 @@
     }
   }
 
-  /* =================== Dynamic Events Fetcher =================== */
   async function loadDynamicEvents() {
     const container = document.getElementById("dynamicEventsContainer");
     try {
@@ -208,14 +195,12 @@
       if(data.events && data.events.length > 0) {
         container.innerHTML = "";
         
-        // Group events into rows of 3
         let html = "";
         for(let i = 0; i < data.events.length; i += 3) {
            const rowEvents = data.events.slice(i, i + 3);
            
            html += `<div class="story-cards">`;
            rowEvents.forEach(e => {
-             // Fallback image if none specified
              const imgSrc = e.image ? e.image : "template/trackday.png";
              const dateObj = new Date(e.date);
              const dateStr = dateObj.toLocaleDateString("en-US", { day: 'numeric', month: 'long', year: 'numeric' });
@@ -245,7 +230,6 @@
     }
   }
 
-  // Load immediately on screen rendering
   window.addEventListener("DOMContentLoaded", loadDynamicEvents);
 
 </script>

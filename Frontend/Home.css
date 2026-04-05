@@ -40,7 +40,6 @@ body {
   text-align: center;
 }
 
-/* Side Panel */
 .side-panel {
   height: 100%;
   width: 250px;
@@ -83,7 +82,6 @@ body {
   cursor: pointer;
 }
 
-/* Carousel */
 .carousel {
   position: relative;
   overflow: hidden;
@@ -160,7 +158,6 @@ body {
   z-index: 2;
 }
 
-/* Global Back Button */
 .back-btn {
   position: absolute;
   left: 60px;
@@ -194,7 +191,6 @@ body {
   right: 10px;
 }
 
-/* Stories Section */
 .stories {
   padding: 80px 40px;
   background-color: black;
@@ -294,7 +290,6 @@ body {
   color: #aaa;
 }
 
-/* Footer */
 footer {
   text-align: center;
   padding: 20px;
@@ -309,7 +304,6 @@ footer a {
 
 
 
-/* Discover Section */
 .discover {
   background-color: white;
   padding: 60px 40px;
@@ -390,7 +384,6 @@ footer a {
   vertical-align: bottom;
 }
 
-/* Responsive Layout */
 @media (max-width: 768px) {
   .discover-cards {
     flex-direction: column;

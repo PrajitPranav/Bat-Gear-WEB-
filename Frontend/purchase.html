@@ -21,7 +21,6 @@
       overflow-x: hidden;
     }
 
-    /* Navbar exact copy */
     .navbar {
       position: fixed; top: 0; left: 0; width: 100%; height: 60px;
       background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -44,7 +43,6 @@
     .side-panel a:hover { background-color: rgba(255, 255, 255, 0.05); border-left-color: white; padding-left: 30px;}
     .side-panel .close-btn { position: absolute; top: 10px; right: 20px; font-size: 28px; background: none; border: none; color: white; cursor: pointer; }
 
-    /* Layout */
     .pricing-container {
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       padding: 120px 20px 60px; min-height: 100vh; animation: fadeIn 0.8s ease-out forwards;
@@ -63,7 +61,6 @@
       .content-split { flex-direction: row; align-items: flex-start; justify-content: center; }
     }
 
-    /* Cards Grid */
     .cards-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; width: 100%; max-width: 900px;
     }
@@ -99,7 +96,6 @@
       transform: scale(1.05); z-index: 10;
     }
 
-    /* Highlighting Popular / Premium */
     .tag {
       position: absolute; top: 12px; right: 12px; font-size: 0.6rem; font-weight: 700;
       letter-spacing: 0.1rem; text-transform: uppercase; padding: 4px 10px; border-radius: 12px;
@@ -112,7 +108,6 @@
     .plan-price { font-size: 1.8rem; font-weight: 300; position:relative; z-index:1;}
     .plan-price span { font-size: 0.85rem; font-weight: 300; opacity: 0.5; }
 
-    /* Right Checkout Summary */
     .summary-card {
       background: rgba(10, 10, 10, 0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 24px; padding: 40px; width: 100%; max-width: 450px;
@@ -156,13 +151,11 @@
 </head>
 <body>
 
-  <!-- Navbar -->
   <nav class="navbar">
     <div class="menu-icon" onclick="openPanel()">☰</div>
     <div class="logo">B A T &nbsp; G E A R</div>
   </nav>
 
-  <!-- Side Panel -->
   <div id="sidePanel" class="side-panel">
     <button class="close-btn" onclick="closePanel()">×</button>
     <a href="home.html">Home</a>
@@ -181,17 +174,14 @@
     </div>
 
     <div class="content-split">
-      <!-- Left: Selection Cards -->
       <div class="cards-grid">
         
-        <!-- Go-Karting -->
         <div class="plan-card" onclick="selectPlan('Go-Karting Pass', '1 Month', 1999, this)">
           <div class="plan-name">Go-Karting Pass</div>
           <div class="plan-desc">Unlimited access to Bat Gear Go-Karting Arena for 1 month. Perfect for beginners.</div>
           <div class="plan-price">₹1,999 <span>/mo</span></div>
         </div>
 
-        <!-- Track Rider -->
         <div class="plan-card active" onclick="selectPlan('Track Rider', '3 Months', 4999, this)">
           <div class="tag tag-popular">Most Popular</div>
           <div class="plan-name">Track Rider</div>
@@ -199,14 +189,12 @@
           <div class="plan-price">₹4,999 <span>/3mo</span></div>
         </div>
 
-        <!-- All in One -->
         <div class="plan-card" onclick="selectPlan('All-in-One', '1 Year', 14999, this)">
           <div class="plan-name">All-in-One</div>
           <div class="plan-desc">Full access to all events, rides, car giveaways & VIP Bat Gear meets.</div>
           <div class="plan-price">₹14,999 <span>/yr</span></div>
         </div>
 
-        <!-- Premium Elite -->
         <div class="plan-card" onclick="selectPlan('Premium Elite', '1 Year', 24999, this)">
           <div class="tag tag-elite">VIP</div>
           <div class="plan-name">Premium Elite</div>
@@ -216,7 +204,6 @@
 
       </div>
 
-      <!-- Right: Checkout -->
       <div class="summary-card">
         <div class="summary-header">Checkout Summary</div>
         
@@ -246,7 +233,6 @@
     function openPanel() { document.getElementById('sidePanel').style.left = '0'; }
     function closePanel() { document.getElementById('sidePanel').style.left = '-250px'; }
     
-    // Auth Check on load
     document.addEventListener("DOMContentLoaded", () => {
       const user = localStorage.getItem("batgear_user");
       if(!user) {
@@ -257,11 +243,9 @@
     let currentPlan = "track-rider";
 
     function selectPlan(name, duration, price, el) {
-      // Manage Active States
       document.querySelectorAll('.plan-card').forEach(card => card.classList.remove('active'));
       el.classList.add('active');
 
-      // Add mild pulse animation to total value to signify change
       const priceEl = document.getElementById("sumPrice");
       priceEl.style.opacity = 0;
       
@@ -288,7 +272,6 @@
       try {
         const uObj = JSON.parse(user);
         
-        // Simulating Backend Payment Gateway Call then Updating User DB
         setTimeout(async () => {
            btn.innerHTML = "Processing...";
            const response = await fetch("http://localhost:5501/api/admin/user/plan", {

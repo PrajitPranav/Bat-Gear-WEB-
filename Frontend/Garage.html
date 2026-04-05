@@ -156,7 +156,6 @@
       }
     }
 
-    /* Feature Section */
     .feature-section {
       background-image: url('/template/factory.png'); /* Replace with your actual image path */
       background-size: cover;
@@ -232,7 +231,6 @@
 </head>
 <body>
 
-  <!-- Side Panel -->
   <div id="sidePanel" class="side-panel">
     <button class="close-btn" onclick="closePanel()">×</button>
     <a href="home.html">Home</a>
@@ -243,14 +241,12 @@
     <a href="contactus.html">Contact Us</a>
   </div>
 
-  <!-- Navbar -->
   <nav class="navbar">
     <div class="menu-icon" onclick="openPanel()">☰</div>
     <div class="back-btn" onclick="window.history.back()" title="Go Back" style="position: absolute; left: 60px; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.05); transition: 0.3s; z-index: 1001; opacity:0.6;">←</div>
     <div class="logo">B A T &nbsp; G E A R</div>
   </nav>
 
-  <!-- Fullscreen Cinematic Video Section -->
   <section class="video-section" id="heroSection">
     <video id="bgVideo" autoplay muted loop playsinline>
       <source src="/template/BMW.mp4" type="video/mp4">
@@ -261,7 +257,6 @@
     </div>
   </section>
 
-  <!-- Second Section Inspired by Maserati-style Layout -->
   <section class="feature-section">
     <div class="feature-overlay">
       <div class="feature-subtitle">FROM DARK TO LEGEND</div>
@@ -273,7 +268,6 @@
     </div>
   </section>
 
-  <!-- ===================== DISCOVER MORE GRID ====================== -->
   <section class="garage-showcase" id="discoverMore">
     <div class="showcase-header">
       <h2>DISCOVER MORE</h2>
@@ -287,7 +281,6 @@
 
     <div class="garage-grid" id="garageGrid">
       
-      <!-- Card 1 -->
       <div class="garage-card" data-category="sports">
         <div class="img-wrapper"><img src="template/trackday.png" alt="Car 1"></div>
         <div class="card-info">
@@ -297,7 +290,6 @@
         </div>
       </div>
 
-      <!-- Card 2 -->
       <div class="garage-card" data-category="muscle">
         <div class="img-wrapper"><img src="template/dragrace.png" alt="Car 2"></div>
         <div class="card-info">
@@ -307,7 +299,6 @@
         </div>
       </div>
 
-      <!-- Card 3 -->
       <div class="garage-card" data-category="sports">
         <div class="img-wrapper"><img src="template/spotlight.png" alt="Car 3"></div>
         <div class="card-info">
@@ -317,7 +308,6 @@
         </div>
       </div>
 
-      <!-- Card 4 -->
       <div class="garage-card" data-category="electric">
         <div class="img-wrapper"><img src="template/factory.png" alt="Car 4"></div>
         <div class="card-info">
@@ -327,7 +317,6 @@
         </div>
       </div>
 
-      <!-- Card 5 -->
       <div class="garage-card" data-category="sports">
         <div class="img-wrapper"><img src="template/formuladrift.png" alt="Car 5"></div>
         <div class="card-info">
@@ -337,7 +326,6 @@
         </div>
       </div>
 
-      <!-- Card 6 -->
       <div class="garage-card" data-category="muscle">
         <div class="img-wrapper"><img src="template/vintagecarshows.png" alt="Car 6"></div>
         <div class="card-info">
@@ -350,7 +338,6 @@
     </div>
   </section>
 
-  <!-- ===================== BOOKING MODAL ====================== -->
   <div class="booking-overlay" id="bookingOverlay" onclick="handleOverlayClick(event)">
     <div class="booking-box" id="bookingBox">
       <div class="booking-close" onclick="closeBooking()">×</div>
@@ -392,7 +379,6 @@
   </div>
 
   <style>
-    /* Garage Showcase Addition */
     .garage-showcase {
       padding: 80px 5%;
       background: #000;
@@ -650,7 +636,6 @@
     .booking-success p  { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.7; }
   </style>
 
-  <!-- JS for interactions -->
   <script>
     const video = document.getElementById('bgVideo');
     video.addEventListener('click', () => {
@@ -665,7 +650,6 @@
       document.getElementById('sidePanel').style.left = "-250px";
     }
 
-    /* ── Garage Filter ── */
     function filterGarage(category) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       event.target.classList.add('active');
@@ -680,12 +664,10 @@
       });
     }
 
-    /* ── Booking Modal ── */
     function openBooking() {
       const overlay = document.getElementById('bookingOverlay');
       overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
-      // Reset form state
       document.getElementById('bookingForm').style.display = 'block';
       document.getElementById('bookingSuccess').style.display = 'none';
       document.getElementById('bookingError').textContent = '';
