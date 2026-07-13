@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-
 driver = webdriver.Chrome()
 
 driver.maximize_window()
@@ -16,7 +15,9 @@ print("======================================")
 print("      BAT GEAR HOME PAGE TEST")
 print("======================================")
 
-
+# ----------------------------------------------------
+# TEST CASE 1 : Verify Page Title
+# ----------------------------------------------------
 expected_title = "Bat Gear | Car Enthusiasts Club"
 
 if driver.title == expected_title:
@@ -29,91 +30,98 @@ else:
 # ----------------------------------------------------
 # TEST CASE 2 : Verify Logo
 # ----------------------------------------------------
-logo = wait.until(
-    EC.visibility_of_element_located((By.CLASS_NAME, "logo"))
-)
+try:
+    logo = wait.until(
+        EC.visibility_of_element_located((By.CLASS_NAME, "logo"))
+    )
 
-if logo.is_displayed():
-    print("✅ Test Case 2 Passed : Logo is Visible")
-else:
-    print("❌ Test Case 2 Failed")
+    if logo.is_displayed():
+        print("✅ Test Case 2 Passed : Logo is Visible")
+except:
+    print("❌ Test Case 2 Failed : Logo Not Found")
 
 # ----------------------------------------------------
 # TEST CASE 3 : Verify Menu Icon
 # ----------------------------------------------------
-menu = wait.until(
-    EC.visibility_of_element_located((By.CLASS_NAME, "menu-icon"))
-)
+try:
+    menu = wait.until(
+        EC.visibility_of_element_located((By.CLASS_NAME, "menu-icon"))
+    )
 
-if menu.is_displayed():
-    print("✅ Test Case 3 Passed : Menu Icon is Visible")
-else:
-    print("❌ Test Case 3 Failed")
+    if menu.is_displayed():
+        print("✅ Test Case 3 Passed : Menu Icon is Visible")
+except:
+    print("❌ Test Case 3 Failed : Menu Icon Not Found")
 
 # ----------------------------------------------------
 # TEST CASE 4 : Verify Carousel
 # ----------------------------------------------------
-carousel = wait.until(
-    EC.visibility_of_element_located((By.CLASS_NAME, "carousel"))
-)
+try:
+    carousel = wait.until(
+        EC.visibility_of_element_located((By.CLASS_NAME, "carousel"))
+    )
 
-if carousel.is_displayed():
-    print("✅ Test Case 4 Passed : Carousel Loaded")
-else:
-    print("❌ Test Case 4 Failed")
+    if carousel.is_displayed():
+        print("✅ Test Case 4 Passed : Carousel Loaded")
+except:
+    print("❌ Test Case 4 Failed : Carousel Not Found")
 
 # ----------------------------------------------------
 # TEST CASE 5 : Verify Stories Section
 # ----------------------------------------------------
-stories = wait.until(
-    EC.visibility_of_element_located((By.CLASS_NAME, "stories"))
-)
+try:
+    stories = wait.until(
+        EC.visibility_of_element_located((By.CLASS_NAME, "stories"))
+    )
 
-if stories.is_displayed():
-    print("✅ Test Case 5 Passed : Stories Section Visible")
-else:
-    print("❌ Test Case 5 Failed")
+    if stories.is_displayed():
+        print("✅ Test Case 5 Passed : Stories Section Visible")
+except:
+    print("❌ Test Case 5 Failed : Stories Section Not Found")
 
 # ----------------------------------------------------
 # TEST CASE 6 : Verify Discover Section
 # ----------------------------------------------------
-discover = wait.until(
-    EC.visibility_of_element_located((By.CLASS_NAME, "discover"))
-)
+try:
+    discover = wait.until(
+        EC.visibility_of_element_located((By.CLASS_NAME, "discover"))
+    )
 
-if discover.is_displayed():
-    print("✅ Test Case 6 Passed : Discover Section Visible")
-else:
-    print("❌ Test Case 6 Failed")
+    if discover.is_displayed():
+        print("✅ Test Case 6 Passed : Discover Section Visible")
+except:
+    print("❌ Test Case 6 Failed : Discover Section Not Found")
 
 # ----------------------------------------------------
 # TEST CASE 7 : Verify Footer
 # ----------------------------------------------------
-footer = wait.until(
-    EC.visibility_of_element_located((By.TAG_NAME, "footer"))
-)
+try:
+    footer = wait.until(
+        EC.visibility_of_element_located((By.TAG_NAME, "footer"))
+    )
 
-if footer.is_displayed():
-    print("✅ Test Case 7 Passed : Footer Visible")
-else:
-    print("❌ Test Case 7 Failed")
+    if footer.is_displayed():
+        print("✅ Test Case 7 Passed : Footer Visible")
+except:
+    print("❌ Test Case 7 Failed : Footer Not Found")
 
 # ----------------------------------------------------
 # TEST CASE 8 : Verify Explore Button
 # ----------------------------------------------------
-explore_button = wait.until(
-    EC.visibility_of_element_located((By.CLASS_NAME, "btn-explore"))
-)
+try:
+    explore_button = wait.until(
+        EC.visibility_of_element_located((By.CLASS_NAME, "btn-explore"))
+    )
 
-if explore_button.is_displayed():
-    print("✅ Test Case 8 Passed : Explore Button Visible")
-else:
-    print("❌ Test Case 8 Failed")
+    if explore_button.is_displayed():
+        print("✅ Test Case 8 Passed : Explore Button Visible")
+except:
+    print("❌ Test Case 8 Failed : Explore Button Not Found")
 
 # ----------------------------------------------------
 # Save Screenshot
 # ----------------------------------------------------
-driver.save_screenshot("screenshots/home_page.png")
+driver.save_screenshot("../screenshots/home_page.png")
 print("📸 Screenshot Saved")
 
 print("\n======================================")
