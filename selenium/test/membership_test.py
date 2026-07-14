@@ -3,7 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import ExpectedConditions as EC
 
-driver = webdriver.chrome()
+driver = webdriver.Chrome()
+driver.maximize_window()
+driver.get("www.google.com")
 
-driver.maximize_Window()
-
+wait = WebDriverWait(driver,10)
