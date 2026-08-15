@@ -1,2 +1,2 @@
 #BatGear
-A Complete car enthusiast
+A Complete page for a car club.
